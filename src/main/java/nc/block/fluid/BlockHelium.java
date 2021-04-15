@@ -3,6 +3,7 @@ package nc.block.fluid;
 import java.util.Random;
 
 import nc.NuclearCraft;
+import nc.block.NCBlocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
@@ -78,7 +79,7 @@ public class BlockHelium extends BlockFluidClassic {
     public void updateTick(World world, int x, int y, int z, Random rand) {
     	super.updateTick(world, x, y, z, rand);
     	if (world.getBlock(x, y, z) == this) {
-            if (this.blockMaterial == NuclearCraft.liquidhelium) {
+            if (this.blockMaterial == NCBlocks.liquidhelium) {
                 int l = 0;
                 if (world.getBlock(x, y, z - 1).getMaterial() == Material.lava) {
                 	l = world.getBlockMetadata(x, y, z - 1);

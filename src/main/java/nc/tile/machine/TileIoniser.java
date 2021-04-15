@@ -1,6 +1,6 @@
 package nc.tile.machine;
  
-import nc.NuclearCraft;
+import nc.Config;
 import nc.block.machine.BlockIoniser;
 import nc.crafting.machine.IoniserRecipes;
 import nc.item.NCItems;
@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 public class TileIoniser extends TileMachineBase {
 	
 	public TileIoniser() {
-		super("ioniser", 250000, 2, 2, true, true, 600, 60000, NuclearCraft.ioniserSpeed, NuclearCraft.ioniserEfficiency, IoniserRecipes.instance());
+		super("ioniser", 250000, 2, 2, true, true, 600, 60000, Config.ioniserSpeed, Config.ioniserEfficiency, IoniserRecipes.instance());
 	}
 	
 	public void updateEntity() {

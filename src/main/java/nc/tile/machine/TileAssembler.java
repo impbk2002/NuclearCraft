@@ -1,6 +1,6 @@
 package nc.tile.machine;
  
-import nc.NuclearCraft;
+import nc.Config;
 import nc.block.machine.BlockAssembler;
 import nc.crafting.machine.AssemblerRecipes;
 import net.minecraft.item.ItemStack;
@@ -27,7 +27,7 @@ public class TileAssembler extends TileMachineBase {
 	public Mode mode;
 	
 	public TileAssembler() {
-		super("assembler", 250000, 4, 1, true, true, 100, 2000, NuclearCraft.assemblerSpeed, NuclearCraft.assemblerEfficiency, AssemblerRecipes.instance());
+		super("assembler", 250000, 4, 1, true, true, 100, 2000, Config.assemblerSpeed, Config.assemblerEfficiency, AssemblerRecipes.instance());
 		mode = Mode.KEEP;
 	}
 	

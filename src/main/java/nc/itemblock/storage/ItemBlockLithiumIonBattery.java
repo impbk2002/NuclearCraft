@@ -1,11 +1,11 @@
 package nc.itemblock.storage;
 
-import nc.NuclearCraft;
+import nc.Config;
 import net.minecraft.block.Block;
 
 public class ItemBlockLithiumIonBattery extends ItemBlockEnergyStorage {
 
 	public ItemBlockLithiumIonBattery(Block block) {
-		super(block, NuclearCraft.lithiumIonRF*10);
+		super(block, Config.lithiumIonRF*10);
 	}
 }

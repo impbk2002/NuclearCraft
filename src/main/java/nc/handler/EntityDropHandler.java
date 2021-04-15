@@ -2,7 +2,7 @@ package nc.handler;
 
 import java.util.Random;
 
-import nc.NuclearCraft;
+import nc.Config;
 import nc.item.NCItems;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
@@ -13,7 +13,7 @@ public class EntityDropHandler {
 	
 	@SubscribeEvent
 	public void onEntityDrop(LivingDropsEvent event) {
-		if (NuclearCraft.extraDrops && event.entity.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot")) {
+		if (Config.extraDrops && event.entity.worldObj.getGameRules().getGameRuleBooleanValue("doMobLoot")) {
 			if(event.entityLiving instanceof EntityMob) {
 				if (rand.nextInt(100) < 1) event.entityLiving.dropItem(NCItems.dominoes, 1);
 				if (rand.nextInt(100) < 4) event.entityLiving.dropItem(NCItems.ricecake, 1);

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import nc.NuclearCraft;
+import nc.Config;
 import nc.block.NCBlocks;
 import nc.item.NCItems;
 import net.minecraft.block.Block;
@@ -42,16 +42,16 @@ public class InfoRecipes {
 		addRecipe(new ItemStack(NCBlocks.reactorBlock), "-Simple block that makes up-the exterior of Fission-Reactors");
 		addRecipe(new ItemStack(NCBlocks.machineBlock), "-Used in the construction of-many machines");
 		addRecipe(new ItemStack(NCBlocks.blastBlock), "-Three times as blast-resistant as obsidian--Can resist nuke explosions");
-		addRecipe(new ItemStack(NCBlocks.nuclearWorkspace), "-An advanced 5x5-crafting table used to-make many things in-NuclearCraft" + (!NuclearCraft.workspace ? "--Currently disabled" : ""));
+		addRecipe(new ItemStack(NCBlocks.nuclearWorkspace), "-An advanced 5x5-crafting table used to-make many things in-Config" + (!Config.workspace ? "--Currently disabled" : ""));
 		addRecipe(new ItemStack(NCBlocks.fusionReactor), "-An advanced RF generator-that fuses Hydrogen, Deuterium,-Tritium, Helium3, Lithium6,-Lithium7 and Boron11 to-generate a very large-amount of RF--Requires a ring of powered-electromagnets to function");
 		addRecipe(new ItemStack(NCBlocks.tubing1), "-Purely decorative block--Looks nice at the edges of-Fission Reactors");
 		addRecipe(new ItemStack(NCBlocks.tubing2), "-Purely decorative block--Looks nice at the edges of-Fission Reactors");
-		addRecipe(new ItemStack(NCBlocks.RTG), "-Generates a constant-stream of " + NuclearCraft.RTGRF + " RF/t");
-		addRecipe(new ItemStack(NCBlocks.WRTG), "-Generates a constant-stream of " + NuclearCraft.WRTGRF + " RF/t");
+		addRecipe(new ItemStack(NCBlocks.RTG), "-Generates a constant-stream of " + Config.RTGRF + " RF/t");
+		addRecipe(new ItemStack(NCBlocks.WRTG), "-Generates a constant-stream of " + Config.WRTGRF + " RF/t");
 		addRecipe(new ItemStack(NCBlocks.steamGenerator), "-Generates RF from steam-at a maximum rate of-2000 mB/t to 4000 RF/t-(2 RF per 1 mB of Steam)");
 		addRecipe(new ItemStack(NCBlocks.steamDecompressor), "-Takes in dense steam-and decompresses it to-form steam at a maximum-rate of 2 mB/t of dense-steam to 2000 mB/t of steam");
 		addRecipe(new ItemStack(NCBlocks.denseSteamDecompressor), "-Takes in superdense steam-and decompresses it to-form dense steam at a-maximum rate of 2 mB/t of-superdense steam to-2000 mB/t of dense steam");
-		addRecipe(new ItemStack(NCBlocks.solarPanel), "-Generates a constant-stream of " + NuclearCraft.solarRF + " RF/t during-the day");
+		addRecipe(new ItemStack(NCBlocks.solarPanel), "-Generates a constant-stream of " + Config.solarRF + " RF/t during-the day");
 		addRecipe(new ItemStack(NCBlocks.collectorIdle), "-Slowly generates Helium4-from the Thorium inside it");
 		addRecipe(new ItemStack(NCBlocks.nuke), "-A cruel joke, a fun time,-or just a big hole--Nuff said");
 		addRecipe(new ItemStack(NCBlocks.antimatterBomb), "-Show the world what-would have happened if-Ewan McGregor did not-have a helicopter at-his disposal...");
@@ -63,9 +63,9 @@ public class InfoRecipes {
 		addRecipe(new ItemStack(NCBlocks.factoryIdle), "-A very useful machine-that uses RF to create-machine parts and-efficiently process ores--Can accept speed and-efficiency upgrades");
 		addRecipe(new ItemStack(NCBlocks.assemblerIdle), "-A very useful machine-that uses RF to automate-Nuclear Workspace recipes--Use sticks to block slots--Will not leave empty slots--Can accept speed and-efficiency upgrades");
 		addRecipe(new ItemStack(NCBlocks.heliumExtractorIdle), "-Uses RF to carefully-extract Liquid Helium-from its cells, so that it-can be transferred as a fluid");
-		addRecipe(new ItemStack(NCBlocks.superElectromagnetIdle), "-Used to control the-beams in particle-accelerators--Requires " + NuclearCraft.superElectromagnetRF + " RF/t to run-continuously");
-		addRecipe(new ItemStack(NCBlocks.electromagnetIdle), "-Used to control a-Fusion Reactor's-superhot plasma--Requires " + NuclearCraft.electromagnetRF + " RF/t to run-continuously");
-		addRecipe(new ItemStack(NCBlocks.supercoolerIdle), "-Used in the construction-of particle accelerators-to cool the superconducting-electromagnets--Requires " + NuclearCraft.electromagnetHe + " mB of Liquid-Helium per second to run-continuously");
+		addRecipe(new ItemStack(NCBlocks.superElectromagnetIdle), "-Used to control the-beams in particle-accelerators--Requires " + Config.superElectromagnetRF + " RF/t to run-continuously");
+		addRecipe(new ItemStack(NCBlocks.electromagnetIdle), "-Used to control a-Fusion Reactor's-superhot plasma--Requires " + Config.electromagnetRF + " RF/t to run-continuously");
+		addRecipe(new ItemStack(NCBlocks.supercoolerIdle), "-Used in the construction-of particle accelerators-to cool the superconducting-electromagnets--Requires " + Config.electromagnetHe + " mB of Liquid-Helium per second to run-continuously");
 		addRecipe(new ItemStack(NCBlocks.synchrotronIdle), "-Place at the corner of a-particle accelerator ring--Takes in electron cells and-fires them into the accelerator");
 		addRecipe(new ItemStack(NCBlocks.simpleQuantumUp), "-A block that mimics the-probabilistic quantum-mechanical physics of a spin-1/2 particle, such as an-electron or a neutron");
 		addRecipe(new ItemStack(NCBlocks.simpleQuantumDown), "-A block that mimics the-probabilistic quantum-mechanical physics of a spin-1/2 particle, such as an-electron or a neutron");
@@ -87,39 +87,39 @@ public class InfoRecipes {
 		addRecipe(new ItemStack(NCItems.recordNeighborhood), "-Jimmy's hometown: a quiet-and green place with-roads to many great-places such as Retroland-and Downtown...");
 		addRecipe(new ItemStack(NCItems.recordPractice), "-Whenever Jimmy has some-new discoveries to test-out, his virtual practice-labs are the best places-to see what's possible...");
 		*/
-		fissionFuelInfo(11, NuclearCraft.baseRFLEU, NuclearCraft.baseFuelLEU, NuclearCraft.baseHeatLEU);
-		fissionFuelInfo(17, NuclearCraft.baseRFLEU, NuclearCraft.baseFuelLEU, NuclearCraft.baseHeatLEU);
-		fissionFuelInfo(12, NuclearCraft.baseRFHEU, NuclearCraft.baseFuelHEU, NuclearCraft.baseHeatHEU);
-		fissionFuelInfo(18, NuclearCraft.baseRFHEU, NuclearCraft.baseFuelHEU, NuclearCraft.baseHeatHEU);
-		fissionFuelInfo(13, NuclearCraft.baseRFLEP, NuclearCraft.baseFuelLEP, NuclearCraft.baseHeatLEP);
-		fissionFuelInfo(19, NuclearCraft.baseRFLEP, NuclearCraft.baseFuelLEP, NuclearCraft.baseHeatLEP);
-		fissionFuelInfo(14, NuclearCraft.baseRFHEP, NuclearCraft.baseFuelHEP, NuclearCraft.baseHeatHEP);
-		fissionFuelInfo(20, NuclearCraft.baseRFHEP, NuclearCraft.baseFuelHEP, NuclearCraft.baseHeatHEP);
-		fissionFuelInfo(15, NuclearCraft.baseRFMOX, NuclearCraft.baseFuelMOX, NuclearCraft.baseHeatMOX);
-		fissionFuelInfo(21, NuclearCraft.baseRFMOX, NuclearCraft.baseFuelMOX, NuclearCraft.baseHeatMOX);
-		fissionFuelInfo(16, NuclearCraft.baseRFTBU, NuclearCraft.baseFuelTBU, NuclearCraft.baseHeatTBU);
+		fissionFuelInfo(11, Config.baseRFLEU, Config.baseFuelLEU, Config.baseHeatLEU);
+		fissionFuelInfo(17, Config.baseRFLEU, Config.baseFuelLEU, Config.baseHeatLEU);
+		fissionFuelInfo(12, Config.baseRFHEU, Config.baseFuelHEU, Config.baseHeatHEU);
+		fissionFuelInfo(18, Config.baseRFHEU, Config.baseFuelHEU, Config.baseHeatHEU);
+		fissionFuelInfo(13, Config.baseRFLEP, Config.baseFuelLEP, Config.baseHeatLEP);
+		fissionFuelInfo(19, Config.baseRFLEP, Config.baseFuelLEP, Config.baseHeatLEP);
+		fissionFuelInfo(14, Config.baseRFHEP, Config.baseFuelHEP, Config.baseHeatHEP);
+		fissionFuelInfo(20, Config.baseRFHEP, Config.baseFuelHEP, Config.baseHeatHEP);
+		fissionFuelInfo(15, Config.baseRFMOX, Config.baseFuelMOX, Config.baseHeatMOX);
+		fissionFuelInfo(21, Config.baseRFMOX, Config.baseFuelMOX, Config.baseHeatMOX);
+		fissionFuelInfo(16, Config.baseRFTBU, Config.baseFuelTBU, Config.baseHeatTBU);
 		
-		fissionFuelInfo(59, NuclearCraft.baseRFLEUOx, NuclearCraft.baseFuelLEUOx, NuclearCraft.baseHeatLEUOx);
-		fissionFuelInfo(63, NuclearCraft.baseRFLEUOx, NuclearCraft.baseFuelLEUOx, NuclearCraft.baseHeatLEUOx);
-		fissionFuelInfo(60, NuclearCraft.baseRFHEUOx, NuclearCraft.baseFuelHEUOx, NuclearCraft.baseHeatHEUOx);
-		fissionFuelInfo(64, NuclearCraft.baseRFHEUOx, NuclearCraft.baseFuelHEUOx, NuclearCraft.baseHeatHEUOx);
-		fissionFuelInfo(61, NuclearCraft.baseRFLEPOx, NuclearCraft.baseFuelLEPOx, NuclearCraft.baseHeatLEPOx);
-		fissionFuelInfo(65, NuclearCraft.baseRFLEPOx, NuclearCraft.baseFuelLEPOx, NuclearCraft.baseHeatLEPOx);
-		fissionFuelInfo(62, NuclearCraft.baseRFHEPOx, NuclearCraft.baseFuelHEPOx, NuclearCraft.baseHeatHEPOx);
-		fissionFuelInfo(66, NuclearCraft.baseRFHEPOx, NuclearCraft.baseFuelHEPOx, NuclearCraft.baseHeatHEPOx);
+		fissionFuelInfo(59, Config.baseRFLEUOx, Config.baseFuelLEUOx, Config.baseHeatLEUOx);
+		fissionFuelInfo(63, Config.baseRFLEUOx, Config.baseFuelLEUOx, Config.baseHeatLEUOx);
+		fissionFuelInfo(60, Config.baseRFHEUOx, Config.baseFuelHEUOx, Config.baseHeatHEUOx);
+		fissionFuelInfo(64, Config.baseRFHEUOx, Config.baseFuelHEUOx, Config.baseHeatHEUOx);
+		fissionFuelInfo(61, Config.baseRFLEPOx, Config.baseFuelLEPOx, Config.baseHeatLEPOx);
+		fissionFuelInfo(65, Config.baseRFLEPOx, Config.baseFuelLEPOx, Config.baseHeatLEPOx);
+		fissionFuelInfo(62, Config.baseRFHEPOx, Config.baseFuelHEPOx, Config.baseHeatHEPOx);
+		fissionFuelInfo(66, Config.baseRFHEPOx, Config.baseFuelHEPOx, Config.baseHeatHEPOx);
 		
 		addRecipe(new ItemStack(NCBlocks.graphiteBlock), "-Generates additional power-and heat in Fission Reactors");
 		
 		addRecipe(new ItemStack(NCBlocks.speedBlock), "-Causes nuclear fuels to-deplete faster in Fission-Reactors");
 		
-		coolerInfo(NCBlocks.coolerBlock, NuclearCraft.standardCool, "Doubly effective when adjacent-to another Standard Reactor-Cooler");
-		coolerInfo(NCBlocks.waterCoolerBlock, NuclearCraft.waterCool, "Doubly effective when adjacent-to Reactor Casing");
-		coolerInfo(NCBlocks.cryotheumCoolerBlock, NuclearCraft.cryotheumCool, "Doubly effective when not-adjacent to any other-Cryotheum Reactor Coolers");
-		coolerInfo(NCBlocks.redstoneCoolerBlock, NuclearCraft.redstoneCool, "Doubly effective when adjacent-to a Fuel Cell Compartment");
-		coolerInfo(NCBlocks.enderiumCoolerBlock, NuclearCraft.enderiumCool, "Doubly effective when adjacent-to Graphite");
-		coolerInfo(NCBlocks.glowstoneCoolerBlock, NuclearCraft.glowstoneCool, "Quadrupally effective when-adjacent to Graphite on-all six sides");
-		coolerInfo(NCBlocks.heliumCoolerBlock, NuclearCraft.heliumCool, "Not affected by its-position in the structure");
-		coolerInfo(NCBlocks.coolantCoolerBlock, NuclearCraft.coolantCool, "Doubly effective when adjacent-to a Water Reactor Cooler");
+		coolerInfo(NCBlocks.coolerBlock, Config.standardCool, "Doubly effective when adjacent-to another Standard Reactor-Cooler");
+		coolerInfo(NCBlocks.waterCoolerBlock, Config.waterCool, "Doubly effective when adjacent-to Reactor Casing");
+		coolerInfo(NCBlocks.cryotheumCoolerBlock, Config.cryotheumCool, "Doubly effective when not-adjacent to any other-Cryotheum Reactor Coolers");
+		coolerInfo(NCBlocks.redstoneCoolerBlock, Config.redstoneCool, "Doubly effective when adjacent-to a Fuel Cell Compartment");
+		coolerInfo(NCBlocks.enderiumCoolerBlock, Config.enderiumCool, "Doubly effective when adjacent-to Graphite");
+		coolerInfo(NCBlocks.glowstoneCoolerBlock, Config.glowstoneCool, "Quadrupally effective when-adjacent to Graphite on-all six sides");
+		coolerInfo(NCBlocks.heliumCoolerBlock, Config.heliumCool, "Not affected by its-position in the structure");
+		coolerInfo(NCBlocks.coolantCoolerBlock, Config.coolantCool, "Doubly effective when adjacent-to a Water Reactor Cooler");
 		/*
 		addRecipe(new ItemStack(NCItems.dominoes), "-Paul's Favourite: He'll-follow anyone he sees-carrying this in their hand...--Restores 16 hunger");
 		addRecipe(new ItemStack(NCItems.boiledEgg), "-Restores 5 hunger");
@@ -140,7 +140,7 @@ public class InfoRecipes {
 	}
 
 	public void fissionFuelInfo(int meta, int power, int time, int heat) {
-		addRecipe(new ItemStack(NCItems.fuel, 1, meta), "Base Power = " + power*NuclearCraft.fissionRF/100 + " RF/t-Base Lifetime = " + (10000000/(time*20))*NuclearCraft.fissionEfficiency + " s-Base Heat = " + heat + " H/t-For a n*m*k Reactor with-c cells and efficiency e:-Multiply Base Power by:-c*(e/100)-Multiply Base Lifetime by:-1/c-Heat produced is determined-by the positions of cells");
+		addRecipe(new ItemStack(NCItems.fuel, 1, meta), "Base Power = " + power*Config.fissionRF/100 + " RF/t-Base Lifetime = " + (10000000/(time*20))*Config.fissionEfficiency + " s-Base Heat = " + heat + " H/t-For a n*m*k Reactor with-c cells and efficiency e:-Multiply Base Power by:-c*(e/100)-Multiply Base Lifetime by:-1/c-Heat produced is determined-by the positions of cells");
 	}
 	
 	public void coolerInfo(Block cooler, int heat, String extra) {

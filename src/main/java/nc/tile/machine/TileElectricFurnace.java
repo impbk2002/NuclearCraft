@@ -1,6 +1,6 @@
 package nc.tile.machine;
  
-import nc.NuclearCraft;
+import nc.Config;
 import nc.block.machine.BlockElectricFurnace;
 import nc.item.NCItems;
 import net.minecraft.item.ItemStack;
@@ -293,11 +293,11 @@ public class TileElectricFurnace extends TileInventory implements IEnergyHandler
 	}
 	
 	public double FurnaceSpeed() {
-		return 100*(100/NuclearCraft.electricFurnaceSmeltSpeed);
+		return 100*(100/Config.electricFurnaceSmeltSpeed);
 	}
 	
 	public double RequiredEnergy() {
-		return 2000*(100/NuclearCraft.electricFurnaceSmeltEfficiency);
+		return 2000*(100/Config.electricFurnaceSmeltEfficiency);
 	}
 
 	public boolean isItemValidForSlot(int slot, ItemStack itemstack) {

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import nc.NuclearCraft;
+import nc.Config;
 import nc.crafting.machine.CrusherRecipesOld;
 import net.minecraft.item.ItemStack;
 import codechicken.nei.PositionedStack;
@@ -69,7 +69,7 @@ public class CrusherFuelRecipeHandler extends CrusherRecipeHandler
     public List<String> handleItemTooltip(GuiRecipe gui, ItemStack stack, List<String> currenttip, int recipe) {
         CachedFuelRecipe crecipe = (CachedFuelRecipe) arecipes.get(recipe);
         CrusherFuelPair fuel = crecipe.crushfuel;
-        float burnTime = (float) ((double) (fuel.burnTime*NuclearCraft.crusherCrushSpeed)/16000);
+        float burnTime = (float) ((double) (fuel.burnTime*Config.crusherCrushSpeed)/16000);
 
         if (gui.isMouseOver(fuel.stack, recipe) && burnTime < 1) {
             burnTime = 1F / burnTime;

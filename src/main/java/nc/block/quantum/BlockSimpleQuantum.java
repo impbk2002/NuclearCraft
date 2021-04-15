@@ -97,7 +97,7 @@ public class BlockSimpleQuantum extends BlockContainer {
 					t.angle = /*180 +*/ newAngle;
 				}
 			}
-			//if (world.isRemote) player.addChatMessage(new ChatComponentText(EnumChatFormatting.WHITE + ("Angle: " + Math.round(displayedAngle) + "°")));
+			//if (world.isRemote) player.addChatMessage(new ChatComponentText(EnumChatFormatting.WHITE + ("Angle: " + Math.round(displayedAngle) + " degree")));
 		}
 		return true;
 	}

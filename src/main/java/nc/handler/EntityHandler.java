@@ -2,6 +2,7 @@ package nc.handler;
 
 import java.util.Random;
 
+import nc.Config;
 import nc.NuclearCraft;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EnumCreatureType;
@@ -19,7 +20,7 @@ public class EntityHandler {
 		int subColor = random.nextInt() * 16777215;
 		
 		EntityRegistry.registerGlobalEntityID(entityClass, name, entityId);
-		if(NuclearCraft.enableNuclearMonster) {
+		if(Config.enableNuclearMonster) {
 			EntityRegistry.addSpawn(entityClass, 3, 1, 1, EnumCreatureType.monster, BiomeGenBase.beach, BiomeGenBase.birchForest, BiomeGenBase.birchForestHills, BiomeGenBase.desert, BiomeGenBase.desertHills, BiomeGenBase.extremeHills, BiomeGenBase.forestHills, BiomeGenBase.mesa, BiomeGenBase.mesaPlateau, BiomeGenBase.plains, BiomeGenBase.river, BiomeGenBase.roofedForest, BiomeGenBase.savanna, BiomeGenBase.swampland, BiomeGenBase.taiga);
 			EntityRegistry.addSpawn(entityClass, 8, 1, 1, EnumCreatureType.monster, BiomeGenBase.hell);
 		}
@@ -36,7 +37,7 @@ public class EntityHandler {
 		int subColor = random.nextInt() * 16777215;
 		
 		EntityRegistry.registerGlobalEntityID(entityClass, name, entityId);
-		if(NuclearCraft.enablePaul) {
+		if(Config.enablePaul) {
 			EntityRegistry.addSpawn(entityClass, 1, 1, 1, EnumCreatureType.ambient, BiomeGenBase.beach, BiomeGenBase.birchForest, BiomeGenBase.birchForestHills, BiomeGenBase.desert, BiomeGenBase.desertHills, BiomeGenBase.extremeHills, BiomeGenBase.forestHills, BiomeGenBase.mesa, BiomeGenBase.mesaPlateau, BiomeGenBase.plains, BiomeGenBase.river, BiomeGenBase.roofedForest, BiomeGenBase.savanna, BiomeGenBase.swampland, BiomeGenBase.taiga);
 		}
 		EntityRegistry.registerModEntity(entityClass, name, entityId, NuclearCraft.instance, 64, 1, true);
@@ -52,7 +53,7 @@ public class EntityHandler {
 		int subColor = random.nextInt() * 16777215;
 		
 		EntityRegistry.registerGlobalEntityID(entityClass, name, entityId);
-		if(NuclearCraft.enableBrian) {
+		if(Config.enableBrian) {
 			EntityRegistry.addSpawn(entityClass, 1, 1, 1, EnumCreatureType.ambient, BiomeGenBase.beach, BiomeGenBase.birchForest, BiomeGenBase.birchForestHills, BiomeGenBase.desert, BiomeGenBase.desertHills, BiomeGenBase.extremeHills, BiomeGenBase.forestHills, BiomeGenBase.mesa, BiomeGenBase.mesaPlateau, BiomeGenBase.plains, BiomeGenBase.river, BiomeGenBase.roofedForest, BiomeGenBase.savanna, BiomeGenBase.swampland, BiomeGenBase.taiga);
 		}
 		EntityRegistry.registerModEntity(entityClass, name, entityId, NuclearCraft.instance, 64, 1, true);

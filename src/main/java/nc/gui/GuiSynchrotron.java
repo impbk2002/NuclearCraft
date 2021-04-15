@@ -1,4 +1,4 @@
-package nc.gui.accelerator;
+package nc.gui;
 
 import nc.container.accelerator.ContainerSynchrotron;
 import nc.tile.accelerator.TileSynchrotron;

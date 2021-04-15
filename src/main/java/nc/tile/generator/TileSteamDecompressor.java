@@ -1,6 +1,7 @@
 package nc.tile.generator;
 
-import nc.NuclearCraft;
+import nc.Config;
+import nc.block.fluid.NCFluids;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
@@ -22,8 +23,8 @@ public class TileSteamDecompressor extends TileEntity implements IFluidHandler {
 
 	public TileSteamDecompressor() {
 		super();
-		tank = new FluidTank(NuclearCraft.steamDecompressRate);
-		tank2 = new FluidTank(NuclearCraft.steamDecompressRate*1000);
+		tank = new FluidTank(Config.steamDecompressRate);
+		tank2 = new FluidTank(Config.steamDecompressRate*1000);
 	}
 	
 	public void updateEntity() {
@@ -46,13 +47,13 @@ public class TileSteamDecompressor extends TileEntity implements IFluidHandler {
 	
 	public void steam() {
 		if (tank.getFluidAmount() != 0) {
-			if (tank.getFluid().getFluid() != NuclearCraft.denseSteam && tank.getFluid().getFluid() != FluidRegistry.getFluid("denseSteam")) {
-				tank.drain(NuclearCraft.steamDecompressRate, true);
+			if (tank.getFluid().getFluid() != NCFluids.denseSteam && tank.getFluid().getFluid() != FluidRegistry.getFluid("denseSteam")) {
+				tank.drain(Config.steamDecompressRate, true);
 			}
-			else if (tank.getFluid().getFluid() == NuclearCraft.denseSteam || tank.getFluid().getFluid() == FluidRegistry.getFluid("denseSteam")) {
-				for (int i = 0; i < NuclearCraft.steamDecompressRate; i++) {
+			else if (tank.getFluid().getFluid() == NCFluids.denseSteam || tank.getFluid().getFluid() == FluidRegistry.getFluid("denseSteam")) {
+				for (int i = 0; i < Config.steamDecompressRate; i++) {
 					if (tank2.getFluidAmount() <= tank2.getCapacity() - 1000 && tank.getFluidAmount() != 0) {
-						tank2.fill(new FluidStack(NuclearCraft.steam, 1000), true);
+						tank2.fill(new FluidStack(NCFluids.steam, 1000), true);
 						tank.drain(1, true);
 					} else break;
 				}
@@ -73,7 +74,7 @@ public class TileSteamDecompressor extends TileEntity implements IFluidHandler {
 	}
 
 	public boolean canFill(ForgeDirection from, Fluid fluid) {
-		return fluid == NuclearCraft.denseSteam || fluid == FluidRegistry.getFluid("denseSteam");
+		return fluid == NCFluids.denseSteam || fluid == FluidRegistry.getFluid("denseSteam");
 	}
 
 	public boolean canDrain(ForgeDirection from, Fluid fluid) {

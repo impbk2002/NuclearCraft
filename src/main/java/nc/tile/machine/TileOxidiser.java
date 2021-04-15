@@ -1,6 +1,6 @@
 package nc.tile.machine;
  
-import nc.NuclearCraft;
+import nc.Config;
 import nc.block.machine.BlockOxidiser;
 import nc.crafting.machine.OxidiserRecipes;
 import nc.item.NCItems;
@@ -12,7 +12,7 @@ public class TileOxidiser extends TileMachineBase {
 	public static final int[] output = {0, 1, 2, 3};
 	
 	public TileOxidiser() {
-		super("oxidiser", 250000, 2, 2, true, true, 600, 60000, NuclearCraft.oxidiserSpeed, NuclearCraft.oxidiserEfficiency, OxidiserRecipes.instance());
+		super("oxidiser", 250000, 2, 2, true, true, 600, 60000, Config.oxidiserSpeed, Config.oxidiserEfficiency, OxidiserRecipes.instance());
 	}
 	
 	public void updateEntity() {

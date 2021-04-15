@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import nc.NuclearCraft;
+import nc.Config;
 import nc.crafting.machine.CrusherRecipesOld;
 import nc.gui.machine.GuiCrusher;
 import net.minecraft.block.Block;
@@ -159,28 +159,28 @@ public class CrusherRecipeHandler extends TemplateRecipeHandler
             if (item instanceof ItemBlock && Block.getBlockFromItem(item) != Blocks.air) {
                 Block block = Block.getBlockFromItem(item);
                 if (block == Blocks.wooden_slab) {
-                	return 8000/NuclearCraft.crusherCrushEfficiency;
+                	return 8000/Config.crusherCrushEfficiency;
                 }
                 if (block.getMaterial() == Material.wood) {
-                	return 16000/NuclearCraft.crusherCrushEfficiency;
+                	return 16000/Config.crusherCrushEfficiency;
                 }
                 if (block == Blocks.coal_block) {
-                	return 960000/NuclearCraft.crusherCrushEfficiency;
+                	return 960000/Config.crusherCrushEfficiency;
                 }
             }
             if (item instanceof ItemTool && ((ItemTool)item).getToolMaterialName().equals("WOOD"))
-            	return 8000/NuclearCraft.crusherCrushEfficiency;
+            	return 8000/Config.crusherCrushEfficiency;
             if (item instanceof ItemSword && ((ItemSword)item).getToolMaterialName().equals("WOOD"))
-            	return 8000/NuclearCraft.crusherCrushEfficiency;
+            	return 8000/Config.crusherCrushEfficiency;
             if (item instanceof ItemHoe && ((ItemHoe)item).getToolMaterialName().equals("WOOD"))
-            	return 8000/NuclearCraft.crusherCrushEfficiency;
-            if (item == Items.stick) return 4000/NuclearCraft.crusherCrushEfficiency;
-            if (item == Items.coal) return 96000/NuclearCraft.crusherCrushEfficiency;
-            if (item == Items.lava_bucket) return 1200000/NuclearCraft.crusherCrushEfficiency;
+            	return 8000/Config.crusherCrushEfficiency;
+            if (item == Items.stick) return 4000/Config.crusherCrushEfficiency;
+            if (item == Items.coal) return 96000/Config.crusherCrushEfficiency;
+            if (item == Items.lava_bucket) return 1200000/Config.crusherCrushEfficiency;
             if (item == Item.getItemFromBlock(Blocks.sapling))
-            	return 4000/NuclearCraft.crusherCrushEfficiency;
-            if (item == Items.blaze_rod) return 144000/NuclearCraft.crusherCrushEfficiency;
-            return (GameRegistry.getFuelValue(itemstack)*48)/NuclearCraft.crusherCrushEfficiency;
+            	return 4000/Config.crusherCrushEfficiency;
+            if (item == Items.blaze_rod) return 144000/Config.crusherCrushEfficiency;
+            return (GameRegistry.getFuelValue(itemstack)*48)/Config.crusherCrushEfficiency;
         }
     }
 }

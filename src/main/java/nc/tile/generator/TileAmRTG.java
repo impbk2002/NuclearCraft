@@ -1,10 +1,10 @@
 package nc.tile.generator;
 
-import nc.NuclearCraft;
+import nc.Config;
 
 public class TileAmRTG extends TileContinuousBase {
 
 	public TileAmRTG() {
-		super("AmRTG", NuclearCraft.AmRTGRF);
+		super("AmRTG", Config.AmRTGRF);
 	}
 }

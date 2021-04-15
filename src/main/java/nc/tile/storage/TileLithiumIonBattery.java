@@ -1,10 +1,10 @@
 package nc.tile.storage;
 
-import nc.NuclearCraft;
+import nc.Config;
 
 public class TileLithiumIonBattery extends TileStorage {
 
 	public TileLithiumIonBattery() {
-		super(NuclearCraft.lithiumIonRF*10);
+		super(Config.lithiumIonRF*10);
 	}
 }

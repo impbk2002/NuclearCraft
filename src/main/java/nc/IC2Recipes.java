@@ -44,7 +44,7 @@ public final class IC2Recipes {
 		try {RecipesHelp.addMaceratorRecipe("ingotMagnesiumDiboride", 1, new ItemStack(NCItems.material, 1, 72));} catch(Exception e) {}
 		
 		// Compressor
-		try {RecipesHelp.addCompressorRecipe(new ItemStack(NCItems.parts, 1, 0), NuclearCraft.workspace ? 4 : 8, new ItemStack(NCItems.parts, 1, 3));} catch(Exception e) {}
+		try {RecipesHelp.addCompressorRecipe(new ItemStack(NCItems.parts, 1, 0), Config.workspace ? 4 : 8, new ItemStack(NCItems.parts, 1, 3));} catch(Exception e) {}
 		try {RecipesHelp.addCompressorRecipe("ingotTough", 1, new ItemStack(NCItems.parts, 2, 0));} catch(Exception e) {}
 
 		// Thermal Centrifuge

@@ -1,6 +1,6 @@
 package nc.tile.generator;
 
-import nc.NuclearCraft;
+import nc.Config;
 import nc.block.generator.BlockReactionGenerator;
 import nc.item.NCItems;
 import net.minecraft.item.Item;
@@ -10,13 +10,13 @@ import net.minecraft.nbt.NBTTagCompound;
 public class TileReactionGenerator extends TileGeneratorInventory {
 	public int reactantlevel;
 	public int fuellevel;
-	public static int power = NuclearCraft.reactionGeneratorRF;
+	public static int power = Config.reactionGeneratorRF;
 	public int reactantMax = 500000;
-	public int requiredReactant = 500/NuclearCraft.reactionGeneratorEfficiency;
+	public int requiredReactant = 500/Config.reactionGeneratorEfficiency;
 	public int lastE;
 	public int E;
 	public int fuelMax = 500000;
-	public int requiredFuel = 500/NuclearCraft.reactionGeneratorEfficiency;
+	public int requiredFuel = 500/Config.reactionGeneratorEfficiency;
 	private static final int[] slots2 = new int[] {0, 1};
 
 	public TileReactionGenerator() {

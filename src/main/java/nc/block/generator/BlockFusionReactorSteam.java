@@ -2,6 +2,7 @@ package nc.block.generator;
 
 import java.util.Random;
 
+import nc.Config;
 import nc.NuclearCraft;
 import nc.block.NCBlocks;
 import nc.tile.generator.TileFusionReactorSteam;
@@ -298,7 +299,7 @@ public class BlockFusionReactorSteam extends BlockContainer {
 	public int getComparatorInputOverride(World world, int x, int y, int z, int i)
 	{
 		TileFusionReactorSteam tileentity = (TileFusionReactorSteam) world.getTileEntity(x, y, z);
-		return tileentity.efficiency <= NuclearCraft.fusionComparatorEfficiency ? (int) (15D*tileentity.efficiency/NuclearCraft.fusionComparatorEfficiency) : 15;
+		return tileentity.efficiency <= Config.fusionComparatorEfficiency ? (int) (15D*tileentity.efficiency/Config.fusionComparatorEfficiency) : 15;
 	}
 	
 	public Block idPicked(World world, int x, int y, int z)

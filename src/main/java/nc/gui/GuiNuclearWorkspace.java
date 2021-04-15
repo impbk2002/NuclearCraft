@@ -1,4 +1,4 @@
-package nc.gui.crafting;
+package nc.gui;
 
 import nc.container.crafting.ContainerNuclearWorkspace;
 import nc.tile.crafting.TileNuclearWorkspace;

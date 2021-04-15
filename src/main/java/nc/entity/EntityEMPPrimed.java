@@ -1,6 +1,6 @@
 package nc.entity;
 
-import nc.NuclearCraft;
+import nc.Config;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
@@ -101,10 +101,10 @@ public class EntityEMPPrimed extends Entity {
 	private void explode(World world) {
         int x = (int) Math.floor(posX); int y = (int) Math.floor(posY); int z = (int) Math.floor(posZ);
         
-        for (int i = -((int)(0.5D*NuclearCraft.explosionRadius)); i <= ((int)(0.5D*NuclearCraft.explosionRadius)); i++) {
-    		for (int j = -((int)(0.5D*NuclearCraft.explosionRadius)); j <= ((int)(0.5D*NuclearCraft.explosionRadius)); j++) {
-    			for (int k = -((int)(0.5D*NuclearCraft.explosionRadius)); k <= ((int)(0.5D*NuclearCraft.explosionRadius)); k++) {
-    				if (i*i + j*j + k*k <= ((int)(0.5D*NuclearCraft.explosionRadius))*((int)(0.5D*NuclearCraft.explosionRadius)) && world.getTileEntity(x + i, y + j, z + k) != null) {
+        for (int i = -((int)(0.5D*Config.explosionRadius)); i <= ((int)(0.5D*Config.explosionRadius)); i++) {
+    		for (int j = -((int)(0.5D*Config.explosionRadius)); j <= ((int)(0.5D*Config.explosionRadius)); j++) {
+    			for (int k = -((int)(0.5D*Config.explosionRadius)); k <= ((int)(0.5D*Config.explosionRadius)); k++) {
+    				if (i*i + j*j + k*k <= ((int)(0.5D*Config.explosionRadius))*((int)(0.5D*Config.explosionRadius)) && world.getTileEntity(x + i, y + j, z + k) != null) {
     					if (world.getTileEntity(x + i, y + j, z + k) instanceof IEnergyHandler) {
     						IEnergyHandler t = (IEnergyHandler) world.getTileEntity(x + i, y + j, z + k);
     						for (ForgeDirection side : ForgeDirection.VALID_DIRECTIONS) {

@@ -1,6 +1,7 @@
 package nc.tile.accelerator;
 
-import nc.NuclearCraft;
+import nc.Config;
+import nc.Config;
 import nc.block.NCBlocks;
 import nc.block.accelerator.BlockSynchrotron;
 import nc.item.NCItems;
@@ -94,7 +95,7 @@ public class TileSynchrotron extends TileInventory implements IEnergyHandler, IE
         if (flag != flag1) {flag1 = flag; BlockSynchrotron.updateBlockState(flag, this.worldObj, this.xCoord, this.yCoord, this.zCoord);}
         
         if (soundCount >= 67) {
-			if (storage.getEnergyStored() >= (int) (1000*((200-(efficiency/10000))/100)) && worldObj.isBlockIndirectlyGettingPowered(this.xCoord, this.yCoord, this.zCoord) && flag1 && percentageOn > 0 && fuel - length >= 0 && NuclearCraft.acceleratorSounds) {
+			if (storage.getEnergyStored() >= (int) (1000*((200-(efficiency/10000))/100)) && worldObj.isBlockIndirectlyGettingPowered(this.xCoord, this.yCoord, this.zCoord) && flag1 && percentageOn > 0 && fuel - length >= 0 && Config.acceleratorSounds) {
 				for (int r = 0; r <= (length-7)/7; r++) {
 					if (orientation == 0) {
 						sound(7*r, 0, 0);
@@ -116,7 +117,7 @@ public class TileSynchrotron extends TileInventory implements IEnergyHandler, IE
         
         if (this.fuel < 0) this.fuel = 0;
         
-        if(!this.worldObj.isRemote && checkCount >= NuclearCraft.acceleratorUpdateRate) {
+        if(!this.worldObj.isRemote && checkCount >= Config.acceleratorUpdateRate) {
         	checkRing();
         	checkCount = 0;
         } else checkCount ++;
@@ -144,10 +145,10 @@ public class TileSynchrotron extends TileInventory implements IEnergyHandler, IE
 			fuel = fuel - (fuel < fuelMax/2 ? length*((fuel*2)+7500)/fuelMax : length*(fuelMax+7500)/fuelMax)/4;
 			this.storage.receiveEnergy(- (int) (1000*((200-(efficiency/10000))/100)), false);
 			if (efficiency >= 1000000) efficiency = 1000000; else efficiency = efficiency + 5000/(length+1);
-			if (length > 0) radiationPower = (fuel < fuelMax/2 ? (fuel*2)/fuelMax : 1)*(2*16*(((length*100)+1)/100)*(((length*100)+1)/100)*percentageOn*(NuclearCraft.superElectromagnetRF/100)*(efficiency/10000))/1000; // 20 kWatts per RF/t
-			particleEnergy = (percentageOn/100)*(m*c*c*(1/Math.sqrt(1-Math.pow((Math.sqrt((2*Math.sqrt(6)*e*Math.pow(c, 5/2)*Math.sqrt(k)*(length*100)*(2*16*(((length*100)+1)/100)*(((length*100)+1)/100)*percentageOn*(NuclearCraft.superElectromagnetRF/100)*(efficiency/10000))*Math.pow(10, 5.5)-3*c*c*(length*100)*(length*100)*(2*16*(((length*100)+1)/100)*(((length*100)+1)/100)*percentageOn*(NuclearCraft.superElectromagnetRF/100)*(efficiency/10000))*Math.pow(10, 10))/(8*e*e*c*k*Math.pow(10, -15)-3*(length*100)*(length*100)*(2*16*(((length*100)+1)/100)*(((length*100)+1)/100)*percentageOn*(NuclearCraft.superElectromagnetRF/100)*(efficiency/10000))*Math.pow(10, -6))))/299792458, 2))-1)*Math.pow(10, 4))/(1000*e);
+			if (length > 0) radiationPower = (fuel < fuelMax/2 ? (fuel*2)/fuelMax : 1)*(2*16*(((length*100)+1)/100)*(((length*100)+1)/100)*percentageOn*(Config.superElectromagnetRF/100)*(efficiency/10000))/1000; // 20 kWatts per RF/t
+			particleEnergy = (percentageOn/100)*(m*c*c*(1/Math.sqrt(1-Math.pow((Math.sqrt((2*Math.sqrt(6)*e*Math.pow(c, 5/2)*Math.sqrt(k)*(length*100)*(2*16*(((length*100)+1)/100)*(((length*100)+1)/100)*percentageOn*(Config.superElectromagnetRF/100)*(efficiency/10000))*Math.pow(10, 5.5)-3*c*c*(length*100)*(length*100)*(2*16*(((length*100)+1)/100)*(((length*100)+1)/100)*percentageOn*(Config.superElectromagnetRF/100)*(efficiency/10000))*Math.pow(10, 10))/(8*e*e*c*k*Math.pow(10, -15)-3*(length*100)*(length*100)*(2*16*(((length*100)+1)/100)*(((length*100)+1)/100)*percentageOn*(Config.superElectromagnetRF/100)*(efficiency/10000))*Math.pow(10, -6))))/299792458, 2))-1)*Math.pow(10, 4))/(1000*e);
 			
-			if (antimatter < 256000000) antimatter += radiationPower/(64000/NuclearCraft.acceleratorProduction);
+			if (antimatter < 256000000) antimatter += radiationPower/(64000/Config.acceleratorProduction);
 		} else {
 			if (efficiency > 2500) efficiency = efficiency - 2500; else efficiency = 0;
 			radiationPower = 0;
@@ -172,7 +173,7 @@ public class TileSynchrotron extends TileInventory implements IEnergyHandler, IE
 			fuel = fuel - (fuel < fuelMax/2 ? length*((fuel*2)+7500)/fuelMax : length*(fuelMax+7500)/fuelMax)/4;
 			this.storage.receiveEnergy(- (int) (1000*((200-efficiency1)/100)), false);
 			if (efficiency >= 1000000) efficiency = 1000000; else efficiency = efficiency + 20;
-			double radPow = (20*16*(length+1)*(length+1)*percentageOn*NuclearCraft.superElectromagnetRF*efficiency1)/10000;
+			double radPow = (20*16*(length+1)*(length+1)*percentageOn*Config.superElectromagnetRF*efficiency1)/10000;
 			if (length > 0) radiationPower = (fuel < fuelMax/2 ? (fuel*2)/fuelMax : 1)*radPow/1000; // 20 Watts per RF/t
 			int modifiedLength = length*100;
 			double a1 = modifiedLength*radPow/1000;
@@ -383,7 +384,7 @@ public class TileSynchrotron extends TileInventory implements IEnergyHandler, IE
     
     public int lengthl() {
     	int l = 0;
-    	for (int i = 0; i < NuclearCraft.ringMaxSize; i++) {
+    	for (int i = 0; i < Config.ringMaxSize; i++) {
     		if (tubef(1+i,0,0) && cornertl(2+i,0,0)) {
     			l = i+1; break;
     		}
@@ -394,7 +395,7 @@ public class TileSynchrotron extends TileInventory implements IEnergyHandler, IE
     
     public int lengthr() {
     	int l = 0;
-    	for (int i = 0; i < NuclearCraft.ringMaxSize; i++) {
+    	for (int i = 0; i < Config.ringMaxSize; i++) {
     		if (tubef(1+i,0,0) && cornertr(2+i,0,0)) {
     			l = i+1; break;
     		}

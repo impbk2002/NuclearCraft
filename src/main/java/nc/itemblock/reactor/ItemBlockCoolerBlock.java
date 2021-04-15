@@ -1,6 +1,6 @@
 package nc.itemblock.reactor;
 
-import nc.NuclearCraft;
+import nc.Config;
 import nc.block.NCBlocks;
 import nc.itemblock.ItemBlockNC;
 import net.minecraft.block.Block;
@@ -26,14 +26,14 @@ public class ItemBlockCoolerBlock extends ItemBlockNC {
 	}
 	
 	public static int coolerHeat(Block block) {
-		if (block == NCBlocks.coolerBlock) return NuclearCraft.standardCool;
-		else if (block == NCBlocks.waterCoolerBlock) return NuclearCraft.waterCool;
-		else if (block == NCBlocks.cryotheumCoolerBlock) return NuclearCraft.cryotheumCool;
-		else if (block == NCBlocks.redstoneCoolerBlock) return NuclearCraft.redstoneCool;
-		else if (block == NCBlocks.enderiumCoolerBlock) return NuclearCraft.enderiumCool;
-		else if (block == NCBlocks.glowstoneCoolerBlock) return NuclearCraft.glowstoneCool;
-		else if (block == NCBlocks.heliumCoolerBlock) return NuclearCraft.heliumCool;
-		else if (block == NCBlocks.coolantCoolerBlock) return NuclearCraft.coolantCool;
+		if (block == NCBlocks.coolerBlock) return Config.standardCool;
+		else if (block == NCBlocks.waterCoolerBlock) return Config.waterCool;
+		else if (block == NCBlocks.cryotheumCoolerBlock) return Config.cryotheumCool;
+		else if (block == NCBlocks.redstoneCoolerBlock) return Config.redstoneCool;
+		else if (block == NCBlocks.enderiumCoolerBlock) return Config.enderiumCool;
+		else if (block == NCBlocks.glowstoneCoolerBlock) return Config.glowstoneCool;
+		else if (block == NCBlocks.heliumCoolerBlock) return Config.heliumCool;
+		else if (block == NCBlocks.coolantCoolerBlock) return Config.coolantCool;
 		else return 0;
 	}
 	

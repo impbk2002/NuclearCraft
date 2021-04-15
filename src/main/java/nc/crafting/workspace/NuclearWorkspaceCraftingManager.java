@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import nc.NuclearCraft;
+import nc.Config;
 import nc.block.NCBlocks;
 import nc.item.NCItems;
 import net.minecraft.block.Block;
@@ -36,7 +36,7 @@ public class NuclearWorkspaceCraftingManager {
 	public NuclearWorkspaceCraftingManager() {
     	recipes = new ArrayList();
     	
-    	if (NuclearCraft.workspace) {
+    	if (Config.workspace) {
 	    	this.addRecipe(new NuclearWorkspaceShapedOreRecipe(new ItemStack(NCBlocks.machineBlock, 1), true, new Object[] {"PLCLP", "LBRBL", "GTITG", "LBRBL", "PLCLP", 'P', "plateBasic", 'L', "plateLead", 'C', new ItemStack(NCItems.parts, 1, 12), 'B', new ItemStack (NCItems.parts, 1, 16), 'R', Items.redstone, 'G', new ItemStack (NCItems.parts, 1, 11), 'T', new ItemStack (NCItems.parts, 1, 13), 'I', new ItemStack (NCItems.parts, 1, 10)}));
 	    	
 	    	this.addRecipe(new NuclearWorkspaceShapedOreRecipe(new ItemStack(NCBlocks.reactorBlock, 16), true, new Object[] {"INNNI", "N   N", "N   N", "N   N", "INNNI", 'N', "plateBasic", 'I', "ingotTough"}));
@@ -129,7 +129,7 @@ public class NuclearWorkspaceCraftingManager {
 	    	this.addRecipe(new NuclearWorkspaceShapedOreRecipe(new ItemStack(NCBlocks.steamGenerator, 2), true, new Object[] {"PPPPP", "PCCCP", "MMMMM", "PCCCP", "PPPPP", 'P', "plateIron", 'C', new ItemStack(NCItems.parts, 1, 12), 'M', new ItemStack(NCItems.parts, 1, 19)}));
 	    	this.addRecipe(new NuclearWorkspaceShapedOreRecipe(new ItemStack(NCBlocks.steamDecompressor, 2), true, new Object[] {"PPPPP", "PCCCP", "GMMMG", "PCCCP", "PPPPP", 'P', "plateIron", 'C', Blocks.piston, 'G', new ItemStack(NCItems.parts, 1, 10), 'M', new ItemStack(NCItems.parts, 1, 19)}));
 	    	this.addRecipe(new NuclearWorkspaceShapedOreRecipe(new ItemStack(NCBlocks.denseSteamDecompressor, 1), true, new Object[] {"PPPPP", "CCCCC", "PPPPP", 'P', "plateAdvanced", 'C', NCBlocks.steamDecompressor}));
-	    	if (NuclearCraft.enableNukes) {
+	    	if (Config.enableNukes) {
 	    		this.addRecipe(new NuclearWorkspaceShapedOreRecipe(new ItemStack(NCBlocks.nuke, 1), true, new Object[] {"RLLLR", "LPTPL", "LTPTL", "LPTPL", "RLLLR", 'T', Items.gunpowder, 'L', "plateBasic", 'R', "plateReinforced", 'P', new ItemStack(NCItems.material, 1, 67)}));
 	    		this.addRecipe(new NuclearWorkspaceShapedOreRecipe(new ItemStack(NCItems.nuclearGrenade, 3), true, new Object[] {"    S", "   S ", "TGT  ", "GNG  ", "TGT  ", 'T', "ingotTough", 'N', NCBlocks.nuke, 'S', Items.string, 'G', Items.gunpowder}));
 	    		this.addRecipe(new NuclearWorkspaceShapedOreRecipe(new ItemStack(NCBlocks.antimatterBomb, 1), true, new Object[] {"PPPPP", "PAAAP", "PAEAP", "PAAAP", "PPPPP", 'A', NCItems.antimatter, 'P', "plateAdvanced", 'E', NCBlocks.superElectromagnetIdle}));

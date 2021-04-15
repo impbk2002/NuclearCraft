@@ -1,13 +1,13 @@
 package nc.tile.machine;
  
-import nc.NuclearCraft;
+import nc.Config;
 import nc.block.machine.BlockSeparator;
 import nc.crafting.machine.SeparatorRecipes;
 
 public class TileSeparator extends TileMachineBase {
 	
 	public TileSeparator() {
-		super("isotopeSeparator", 250000, 1, 2, true, true, 200, 8000, NuclearCraft.separatorSpeed, NuclearCraft.separatorEfficiency, SeparatorRecipes.instance());
+		super("isotopeSeparator", 250000, 1, 2, true, true, 200, 8000, Config.separatorSpeed, Config.separatorEfficiency, SeparatorRecipes.instance());
 	}
 	
 	public void updateEntity() {

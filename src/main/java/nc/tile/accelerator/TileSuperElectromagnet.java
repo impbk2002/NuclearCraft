@@ -1,6 +1,6 @@
 package nc.tile.accelerator;
 
-import nc.NuclearCraft;
+import nc.Config;
 import nc.block.accelerator.BlockSuperElectromagnet;
 import nc.tile.machine.TileInventory;
 import net.minecraft.inventory.ISidedInventory;
@@ -21,7 +21,7 @@ public class TileSuperElectromagnet extends TileInventory implements IEnergyHand
 	public boolean flag1;
 	public int energy;
 	public EnergyStorage storage;
-	public static int power = NuclearCraft.superElectromagnetRF*NuclearCraft.EMUpdateRate;
+	public static int power = Config.superElectromagnetRF*Config.EMUpdateRate;
 	private int tickCount = 0;
 	
 	public TileSuperElectromagnet() {
@@ -32,7 +32,7 @@ public class TileSuperElectromagnet extends TileInventory implements IEnergyHand
 	
 	public void updateEntity() {
 		super.updateEntity();
-		if (tickCount >= NuclearCraft.EMUpdateRate) {
+		if (tickCount >= Config.EMUpdateRate) {
 			if(!this.worldObj.isRemote) energy();
 			if (flag != flag1) { flag1 = flag; BlockSuperElectromagnet.updateBlockState(flag, this.worldObj, this.xCoord, this.yCoord, this.zCoord); }
 			tickCount = 0;

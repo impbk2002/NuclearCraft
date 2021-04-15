@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import nc.NuclearCraft;
+import nc.Config;
 import nc.gui.machine.GuiNuclearFurnace;
 import nc.item.NCItems;
 import net.minecraft.block.Block;
@@ -155,13 +155,13 @@ public class NuclearFurnaceRecipeHandler extends TemplateRecipeHandler
 		} else {
 			Item item = itemstack.getItem();
 			if(item == new ItemStack(NCItems.material, 1, 4).getItem() && item.getDamage(itemstack) == 4) {
-				return (int) Math.ceil(((NuclearCraft.nuclearFurnaceCookSpeed*32)/NuclearCraft.nuclearFurnaceCookEfficiency)*Math.ceil(300/NuclearCraft.nuclearFurnaceCookSpeed));
+				return (int) Math.ceil(((Config.nuclearFurnaceCookSpeed*32)/Config.nuclearFurnaceCookEfficiency)*Math.ceil(300/Config.nuclearFurnaceCookSpeed));
 			} else if(item == new ItemStack(NCItems.material, 1, 5).getItem() && item.getDamage(itemstack) == 5) {
-				return (int) Math.ceil(((NuclearCraft.nuclearFurnaceCookSpeed*32)/NuclearCraft.nuclearFurnaceCookEfficiency)*Math.ceil(300/NuclearCraft.nuclearFurnaceCookSpeed));
+				return (int) Math.ceil(((Config.nuclearFurnaceCookSpeed*32)/Config.nuclearFurnaceCookEfficiency)*Math.ceil(300/Config.nuclearFurnaceCookSpeed));
 			} else if(item == new ItemStack(NCItems.material, 1, 19).getItem() && item.getDamage(itemstack) == 19) {
-				return (int) Math.ceil(((NuclearCraft.nuclearFurnaceCookSpeed*32)/NuclearCraft.nuclearFurnaceCookEfficiency)*Math.ceil(300/NuclearCraft.nuclearFurnaceCookSpeed));
+				return (int) Math.ceil(((Config.nuclearFurnaceCookSpeed*32)/Config.nuclearFurnaceCookEfficiency)*Math.ceil(300/Config.nuclearFurnaceCookSpeed));
 			} else if(item == new ItemStack(NCItems.material, 1, 20).getItem() && item.getDamage(itemstack) == 20) {
-				return (int) Math.ceil(((NuclearCraft.nuclearFurnaceCookSpeed*32)/NuclearCraft.nuclearFurnaceCookEfficiency)*Math.ceil(300/NuclearCraft.nuclearFurnaceCookSpeed));
+				return (int) Math.ceil(((Config.nuclearFurnaceCookSpeed*32)/Config.nuclearFurnaceCookEfficiency)*Math.ceil(300/Config.nuclearFurnaceCookSpeed));
 			}
 		return 0;
 		}

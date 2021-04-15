@@ -2,7 +2,7 @@ package nc.worldgen;
  
 import java.util.Random;
 
-import nc.NuclearCraft;
+import nc.Config;
 import nc.block.NCBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -27,16 +27,16 @@ public class OreGen implements IWorldGenerator {
 	WorldGenMinable liquidHelium;
     
     public OreGen() {
-		copper = new WorldGenMinable(NCBlocks.blockOre, 0, NuclearCraft.oreSizeCopper, Blocks.stone);
-		tin = new WorldGenMinable(NCBlocks.blockOre, 1, NuclearCraft.oreSizeTin, Blocks.stone);
-		lead = new WorldGenMinable(NCBlocks.blockOre, 2, NuclearCraft.oreSizeLead, Blocks.stone);
-		silver = new WorldGenMinable(NCBlocks.blockOre, 3, NuclearCraft.oreSizeSilver, Blocks.stone);
-		uranium = new WorldGenMinable(NCBlocks.blockOre, 4, NuclearCraft.oreSizeUranium, Blocks.stone);
-		thorium = new WorldGenMinable(NCBlocks.blockOre, 5, NuclearCraft.oreSizeThorium, Blocks.stone);
-		lithium = new WorldGenMinable(NCBlocks.blockOre, 7, NuclearCraft.oreSizeLithium, Blocks.stone);
-		boron = new WorldGenMinable(NCBlocks.blockOre, 8, NuclearCraft.oreSizeBoron, Blocks.stone);
-		magnesium = new WorldGenMinable(NCBlocks.blockOre, 9, NuclearCraft.oreSizeMagnesium, Blocks.stone);
-        plutonium = new WorldGenMinable(NCBlocks.blockOre, 6, NuclearCraft.oreSizePlutonium, Blocks.netherrack);
+		copper = new WorldGenMinable(NCBlocks.blockOre, 0, Config.oreSizeCopper, Blocks.stone);
+		tin = new WorldGenMinable(NCBlocks.blockOre, 1, Config.oreSizeTin, Blocks.stone);
+		lead = new WorldGenMinable(NCBlocks.blockOre, 2, Config.oreSizeLead, Blocks.stone);
+		silver = new WorldGenMinable(NCBlocks.blockOre, 3, Config.oreSizeSilver, Blocks.stone);
+		uranium = new WorldGenMinable(NCBlocks.blockOre, 4, Config.oreSizeUranium, Blocks.stone);
+		thorium = new WorldGenMinable(NCBlocks.blockOre, 5, Config.oreSizeThorium, Blocks.stone);
+		lithium = new WorldGenMinable(NCBlocks.blockOre, 7, Config.oreSizeLithium, Blocks.stone);
+		boron = new WorldGenMinable(NCBlocks.blockOre, 8, Config.oreSizeBoron, Blocks.stone);
+		magnesium = new WorldGenMinable(NCBlocks.blockOre, 9, Config.oreSizeMagnesium, Blocks.stone);
+        plutonium = new WorldGenMinable(NCBlocks.blockOre, 6, Config.oreSizePlutonium, Blocks.netherrack);
         liquidHelium = new WorldGenMinable(NCBlocks.blockHelium, 0, 8, Blocks.end_stone);
     }
 	
@@ -49,54 +49,54 @@ public class OreGen implements IWorldGenerator {
  
 	void generateSurface(Random random, int xChunk, int zChunk, World world) {
 		int xPos, yPos, zPos;
-        if (NuclearCraft.oreGenCopper)
-        { for (int i = 0; i < NuclearCraft.oreRarityCopper; i++) { xPos = xChunk + random.nextInt(16); yPos = random.nextInt(NuclearCraft.oreMaxHeightCopper); zPos = zChunk + random.nextInt(16);
+        if (Config.oreGenCopper)
+        { for (int i = 0; i < Config.oreRarityCopper; i++) { xPos = xChunk + random.nextInt(16); yPos = random.nextInt(Config.oreMaxHeightCopper); zPos = zChunk + random.nextInt(16);
                 copper.generate(world, random, xPos, yPos, zPos); } }
 
-        if (NuclearCraft.oreGenTin)
-        { for (int i = 0; i < NuclearCraft.oreRarityTin; i++) { xPos = xChunk + random.nextInt(16); yPos = random.nextInt(NuclearCraft.oreMaxHeightTin); zPos = zChunk + random.nextInt(16);
+        if (Config.oreGenTin)
+        { for (int i = 0; i < Config.oreRarityTin; i++) { xPos = xChunk + random.nextInt(16); yPos = random.nextInt(Config.oreMaxHeightTin); zPos = zChunk + random.nextInt(16);
                 tin.generate(world, random, xPos, yPos, zPos); } }
 
-        if (NuclearCraft.oreGenLead)
-        { for (int i = 0; i < NuclearCraft.oreRarityLead; i++) { xPos = xChunk + random.nextInt(16); yPos = random.nextInt(NuclearCraft.oreMaxHeightLead); zPos = zChunk + random.nextInt(16);
+        if (Config.oreGenLead)
+        { for (int i = 0; i < Config.oreRarityLead; i++) { xPos = xChunk + random.nextInt(16); yPos = random.nextInt(Config.oreMaxHeightLead); zPos = zChunk + random.nextInt(16);
                 lead.generate(world, random, xPos, yPos, zPos); } }
 
-        if (NuclearCraft.oreGenSilver)
-        { for (int i = 0; i < NuclearCraft.oreRaritySilver; i++) { xPos = xChunk + random.nextInt(16); yPos = random.nextInt(NuclearCraft.oreMaxHeightSilver); zPos = zChunk + random.nextInt(16);
+        if (Config.oreGenSilver)
+        { for (int i = 0; i < Config.oreRaritySilver; i++) { xPos = xChunk + random.nextInt(16); yPos = random.nextInt(Config.oreMaxHeightSilver); zPos = zChunk + random.nextInt(16);
                 silver.generate(world, random, xPos, yPos, zPos); } }
 
-        if (NuclearCraft.oreGenUranium)
-        { for (int i = 0; i < NuclearCraft.oreRarityUranium; i++) { xPos = xChunk + random.nextInt(16); yPos = random.nextInt(NuclearCraft.oreMaxHeightUranium); zPos = zChunk + random.nextInt(16);
+        if (Config.oreGenUranium)
+        { for (int i = 0; i < Config.oreRarityUranium; i++) { xPos = xChunk + random.nextInt(16); yPos = random.nextInt(Config.oreMaxHeightUranium); zPos = zChunk + random.nextInt(16);
                 uranium.generate(world, random, xPos, yPos, zPos); } }
 
-        if (NuclearCraft.oreGenThorium)
-        { for (int i = 0; i < NuclearCraft.oreRarityThorium; i++) { xPos = xChunk + random.nextInt(16); yPos = random.nextInt(NuclearCraft.oreMaxHeightThorium); zPos = zChunk + random.nextInt(16);
+        if (Config.oreGenThorium)
+        { for (int i = 0; i < Config.oreRarityThorium; i++) { xPos = xChunk + random.nextInt(16); yPos = random.nextInt(Config.oreMaxHeightThorium); zPos = zChunk + random.nextInt(16);
                 thorium.generate(world, random, xPos, yPos, zPos); } }
         
-        if (NuclearCraft.oreGenLithium)
-        { for (int i = 0; i < NuclearCraft.oreRarityLithium; i++) { xPos = xChunk + random.nextInt(16); yPos = random.nextInt(NuclearCraft.oreMaxHeightLithium); zPos = zChunk + random.nextInt(16);
+        if (Config.oreGenLithium)
+        { for (int i = 0; i < Config.oreRarityLithium; i++) { xPos = xChunk + random.nextInt(16); yPos = random.nextInt(Config.oreMaxHeightLithium); zPos = zChunk + random.nextInt(16);
                 lithium.generate(world, random, xPos, yPos, zPos); } }
         
-        if (NuclearCraft.oreGenBoron)
-        { for (int i = 0; i < NuclearCraft.oreRarityBoron; i++) { xPos = xChunk + random.nextInt(16); yPos = random.nextInt(NuclearCraft.oreMaxHeightBoron); zPos = zChunk + random.nextInt(16);
+        if (Config.oreGenBoron)
+        { for (int i = 0; i < Config.oreRarityBoron; i++) { xPos = xChunk + random.nextInt(16); yPos = random.nextInt(Config.oreMaxHeightBoron); zPos = zChunk + random.nextInt(16);
                 boron.generate(world, random, xPos, yPos, zPos); } }
         
-        if (NuclearCraft.oreGenMagnesium)
-        { for (int i = 0; i < NuclearCraft.oreRarityMagnesium; i++) { xPos = xChunk + random.nextInt(16); yPos = random.nextInt(NuclearCraft.oreMaxHeightMagnesium); zPos = zChunk + random.nextInt(16);
+        if (Config.oreGenMagnesium)
+        { for (int i = 0; i < Config.oreRarityMagnesium; i++) { xPos = xChunk + random.nextInt(16); yPos = random.nextInt(Config.oreMaxHeightMagnesium); zPos = zChunk + random.nextInt(16);
                 magnesium.generate(world, random, xPos, yPos, zPos); } }
 	}
     
     void generateNether(Random random, int xChunk, int zChunk, World world) {
         int xPos, yPos, zPos;
-        if (NuclearCraft.oreGenPlutonium)
-        { for (int i = 0; i < NuclearCraft.oreRarityPlutonium; i++) { xPos = xChunk + random.nextInt(16); yPos = random.nextInt(NuclearCraft.oreMaxHeightPlutonium); zPos = zChunk + random.nextInt(16);
+        if (Config.oreGenPlutonium)
+        { for (int i = 0; i < Config.oreRarityPlutonium; i++) { xPos = xChunk + random.nextInt(16); yPos = random.nextInt(Config.oreMaxHeightPlutonium); zPos = zChunk + random.nextInt(16);
                 plutonium.generate(world, random, xPos, yPos, zPos); } }
     }
     
     void generateEnd(Random random, int xChunk, int zChunk, World world) {
         int xPos, yPos, zPos;
-        if (NuclearCraft.liquidHeliumLakeGen > 0)
-        { for (int i = 0; i < NuclearCraft.liquidHeliumLakeGen; i++) { xPos = xChunk + random.nextInt(16); yPos = random.nextInt(128); zPos = zChunk + random.nextInt(16);
+        if (Config.liquidHeliumLakeGen > 0)
+        { for (int i = 0; i < Config.liquidHeliumLakeGen; i++) { xPos = xChunk + random.nextInt(16); yPos = random.nextInt(128); zPos = zChunk + random.nextInt(16);
         		liquidHelium.generate(world, random, xPos, yPos, zPos); } }
     }
  

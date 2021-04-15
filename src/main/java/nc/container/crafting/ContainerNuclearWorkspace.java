@@ -1,6 +1,6 @@
 package nc.container.crafting;
 
-import nc.NuclearCraft;
+import nc.Config;
 import nc.block.NCBlocks;
 import nc.crafting.workspace.NuclearWorkspaceCraftingManager;
 import nc.tile.crafting.TileNuclearWorkspace;
@@ -77,11 +77,11 @@ public class ContainerNuclearWorkspace extends Container {
                 }
                 slot.onSlotChange(itemstack1, itemstack);
             } else if (slotNumber >= 26 && slotNumber < 53) {
-                if (NuclearCraft.workspaceShiftClick ? (!this.mergeItemStack(itemstack1, 1, 26, false) && !this.mergeItemStack(itemstack1, 53, 62, false)) : !this.mergeItemStack(itemstack1, 53, 62, false)) {
+                if (Config.workspaceShiftClick ? (!this.mergeItemStack(itemstack1, 1, 26, false) && !this.mergeItemStack(itemstack1, 53, 62, false)) : !this.mergeItemStack(itemstack1, 53, 62, false)) {
                     return null;
                 }
             } else if (slotNumber >= 53 && slotNumber < 62) {
-                if (!this.mergeItemStack(itemstack1, NuclearCraft.workspaceShiftClick ? 1 : 26, 53, false)) {
+                if (!this.mergeItemStack(itemstack1, Config.workspaceShiftClick ? 1 : 26, 53, false)) {
                     return null;
                 }
             } else if (!this.mergeItemStack(itemstack1, 26, 62, false)) {

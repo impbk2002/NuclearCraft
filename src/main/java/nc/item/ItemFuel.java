@@ -2,7 +2,8 @@ package nc.item;
 
 import java.util.List;
 
-import nc.NuclearCraft;
+import nc.Config;
+import nc.block.NCBlocks;
 import nc.util.InfoNC;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,31 +27,31 @@ public class ItemFuel extends ItemMeta {
 	}
 	
 	public String[] info(int m) {
-		if (m == 0 || m == 6 || m == 11 || m == 17) return fuelInfo(NuclearCraft.baseRFLEU, NuclearCraft.baseFuelLEU, NuclearCraft.baseHeatLEU);
-		else if (m == 1 || m == 7 || m == 12 || m == 18) return fuelInfo(NuclearCraft.baseRFHEU, NuclearCraft.baseFuelHEU, NuclearCraft.baseHeatHEU);
-		else if (m == 2 || m == 8 || m == 13 || m == 19) return fuelInfo(NuclearCraft.baseRFLEP, NuclearCraft.baseFuelLEP, NuclearCraft.baseHeatLEP);
-		else if (m == 3 || m == 9 || m == 14 || m == 20) return fuelInfo(NuclearCraft.baseRFHEP, NuclearCraft.baseFuelHEP, NuclearCraft.baseHeatHEP);
-		else if (m == 4 || m == 10 || m == 15 || m == 21) return fuelInfo(NuclearCraft.baseRFMOX, NuclearCraft.baseFuelMOX, NuclearCraft.baseHeatMOX);
-		else if (m == 5 || m == 16) return fuelInfo(NuclearCraft.baseRFTBU, NuclearCraft.baseFuelTBU, NuclearCraft.baseHeatTBU);
-		else if (m == 51 || m == 55 || m == 59 || m == 63) return fuelInfo(NuclearCraft.baseRFLEUOx, NuclearCraft.baseFuelLEUOx, NuclearCraft.baseHeatLEUOx);
-		else if (m == 52 || m == 56 || m == 60 || m == 64) return fuelInfo(NuclearCraft.baseRFHEUOx, NuclearCraft.baseFuelHEUOx, NuclearCraft.baseHeatHEUOx);
-		else if (m == 53 || m == 57 || m == 61 || m == 65) return fuelInfo(NuclearCraft.baseRFLEPOx, NuclearCraft.baseFuelLEPOx, NuclearCraft.baseHeatLEPOx);
-		else if (m == 54 || m == 58 || m == 62 || m == 66) return fuelInfo(NuclearCraft.baseRFHEPOx, NuclearCraft.baseFuelHEPOx, NuclearCraft.baseHeatHEPOx);
-		else if (m == 76 || m == 77) return fuelInfo(NuclearCraft.baseRFTBUOx, NuclearCraft.baseFuelTBUOx, NuclearCraft.baseHeatTBUOx);
+		if (m == 0 || m == 6 || m == 11 || m == 17) return fuelInfo(Config.baseRFLEU, Config.baseFuelLEU, Config.baseHeatLEU);
+		else if (m == 1 || m == 7 || m == 12 || m == 18) return fuelInfo(Config.baseRFHEU, Config.baseFuelHEU, Config.baseHeatHEU);
+		else if (m == 2 || m == 8 || m == 13 || m == 19) return fuelInfo(Config.baseRFLEP, Config.baseFuelLEP, Config.baseHeatLEP);
+		else if (m == 3 || m == 9 || m == 14 || m == 20) return fuelInfo(Config.baseRFHEP, Config.baseFuelHEP, Config.baseHeatHEP);
+		else if (m == 4 || m == 10 || m == 15 || m == 21) return fuelInfo(Config.baseRFMOX, Config.baseFuelMOX, Config.baseHeatMOX);
+		else if (m == 5 || m == 16) return fuelInfo(Config.baseRFTBU, Config.baseFuelTBU, Config.baseHeatTBU);
+		else if (m == 51 || m == 55 || m == 59 || m == 63) return fuelInfo(Config.baseRFLEUOx, Config.baseFuelLEUOx, Config.baseHeatLEUOx);
+		else if (m == 52 || m == 56 || m == 60 || m == 64) return fuelInfo(Config.baseRFHEUOx, Config.baseFuelHEUOx, Config.baseHeatHEUOx);
+		else if (m == 53 || m == 57 || m == 61 || m == 65) return fuelInfo(Config.baseRFLEPOx, Config.baseFuelLEPOx, Config.baseHeatLEPOx);
+		else if (m == 54 || m == 58 || m == 62 || m == 66) return fuelInfo(Config.baseRFHEPOx, Config.baseFuelHEPOx, Config.baseHeatHEPOx);
+		else if (m == 76 || m == 77) return fuelInfo(Config.baseRFTBUOx, Config.baseFuelTBUOx, Config.baseHeatTBUOx);
 		
-		else if (m == 79 || m == 99) return fuelInfo(NuclearCraft.baseRFLEN, NuclearCraft.baseFuelLEN, NuclearCraft.baseHeatLEN);
-		else if (m == 80 || m == 100) return fuelInfo(NuclearCraft.baseRFHEN, NuclearCraft.baseFuelHEN, NuclearCraft.baseHeatHEN);
-		else if (m == 81 || m == 101) return fuelInfo(NuclearCraft.baseRFLEA, NuclearCraft.baseFuelLEA, NuclearCraft.baseHeatLEA);
-		else if (m == 82 || m == 102) return fuelInfo(NuclearCraft.baseRFHEA, NuclearCraft.baseFuelHEA, NuclearCraft.baseHeatHEA);
-		else if (m == 83 || m == 103 || m == 85 || m == 105 || m == 87 || m == 107) return fuelInfo(NuclearCraft.baseRFLEC, NuclearCraft.baseFuelLEC, NuclearCraft.baseHeatLEC);
-		else if (m == 84 || m == 104 || m == 86 || m == 106 || m == 88 || m == 108) return fuelInfo(NuclearCraft.baseRFHEC, NuclearCraft.baseFuelHEC, NuclearCraft.baseHeatHEC);
+		else if (m == 79 || m == 99) return fuelInfo(Config.baseRFLEN, Config.baseFuelLEN, Config.baseHeatLEN);
+		else if (m == 80 || m == 100) return fuelInfo(Config.baseRFHEN, Config.baseFuelHEN, Config.baseHeatHEN);
+		else if (m == 81 || m == 101) return fuelInfo(Config.baseRFLEA, Config.baseFuelLEA, Config.baseHeatLEA);
+		else if (m == 82 || m == 102) return fuelInfo(Config.baseRFHEA, Config.baseFuelHEA, Config.baseHeatHEA);
+		else if (m == 83 || m == 103 || m == 85 || m == 105 || m == 87 || m == 107) return fuelInfo(Config.baseRFLEC, Config.baseFuelLEC, Config.baseHeatLEC);
+		else if (m == 84 || m == 104 || m == 86 || m == 106 || m == 88 || m == 108) return fuelInfo(Config.baseRFHEC, Config.baseFuelHEC, Config.baseHeatHEC);
 		
-		else if (m == 89 || m == 109) return fuelInfo(NuclearCraft.baseRFLENOx, NuclearCraft.baseFuelLENOx, NuclearCraft.baseHeatLENOx);
-		else if (m == 90 || m == 110) return fuelInfo(NuclearCraft.baseRFHENOx, NuclearCraft.baseFuelHENOx, NuclearCraft.baseHeatHENOx);
-		else if (m == 91 || m == 111) return fuelInfo(NuclearCraft.baseRFLEAOx, NuclearCraft.baseFuelLEAOx, NuclearCraft.baseHeatLEAOx);
-		else if (m == 92 || m == 112) return fuelInfo(NuclearCraft.baseRFHEAOx, NuclearCraft.baseFuelHEAOx, NuclearCraft.baseHeatHEAOx);
-		else if (m == 93 || m == 113 || m == 95 || m == 115 || m == 97 || m == 117) return fuelInfo(NuclearCraft.baseRFLECOx, NuclearCraft.baseFuelLECOx, NuclearCraft.baseHeatLECOx);
-		else if (m == 94 || m == 114 || m == 96 || m == 116 || m == 98 || m == 118) return fuelInfo(NuclearCraft.baseRFHECOx, NuclearCraft.baseFuelHECOx, NuclearCraft.baseHeatHECOx);
+		else if (m == 89 || m == 109) return fuelInfo(Config.baseRFLENOx, Config.baseFuelLENOx, Config.baseHeatLENOx);
+		else if (m == 90 || m == 110) return fuelInfo(Config.baseRFHENOx, Config.baseFuelHENOx, Config.baseHeatHENOx);
+		else if (m == 91 || m == 111) return fuelInfo(Config.baseRFLEAOx, Config.baseFuelLEAOx, Config.baseHeatLEAOx);
+		else if (m == 92 || m == 112) return fuelInfo(Config.baseRFHEAOx, Config.baseFuelHEAOx, Config.baseHeatHEAOx);
+		else if (m == 93 || m == 113 || m == 95 || m == 115 || m == 97 || m == 117) return fuelInfo(Config.baseRFLECOx, Config.baseFuelLECOx, Config.baseHeatLECOx);
+		else if (m == 94 || m == 114 || m == 96 || m == 116 || m == 98 || m == 118) return fuelInfo(Config.baseRFHECOx, Config.baseFuelHECOx, Config.baseHeatHECOx);
 		
 		else if (m == 36) return fuelInfo("Boron-11", "Lithium-7");
 		else if (m == 37) return fuelInfo("Deuterium", "Tritium", "Helium-3", "Lithium-6");
@@ -65,8 +66,8 @@ public class ItemFuel extends ItemMeta {
 	
 	public String[] fuelInfo(int power, int time, int heat) {
 		String[] inf = {
-			"Base Power: " + power*NuclearCraft.fissionRF/100 + " RF/t",
-			"Base Lifetime: " + (10000000/(time*20))*NuclearCraft.fissionEfficiency + " s",
+			"Base Power: " + power*Config.fissionRF/100 + " RF/t",
+			"Base Lifetime: " + (10000000/(time*20))*Config.fissionEfficiency + " s",
 			"Base Heat: " + heat + " H/t",
 			"For a Fission Reactor with c Cell Compartments and an Efficiency of e,",
 			"multiply the Base Power by c*(e/100) and multiply the Base Lifetime by 1/c",
@@ -251,7 +252,7 @@ public class ItemFuel extends ItemMeta {
 					world.setBlockToAir(i, j, k);
 					return addStackToInv(stack, player, new ItemStack(NCItems.fuel, 1, 34));
 				}
-				if (material == NuclearCraft.liquidhelium && l == 0) {
+				if (material == NCBlocks.liquidhelium && l == 0) {
 					world.setBlockToAir(i, j, k);
 					return addStackToInv(stack, player, new ItemStack(NCItems.fuel, 1, 75));
 				}

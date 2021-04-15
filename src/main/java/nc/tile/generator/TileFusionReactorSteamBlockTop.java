@@ -7,7 +7,7 @@ import mekanism.api.gas.GasRegistry;
 import mekanism.api.gas.GasStack;
 import mekanism.api.gas.IGasHandler;
 import mekanism.api.gas.ITubeConnection;
-import nc.NuclearCraft;
+import nc.Config;
 import nc.block.NCBlocks;
 import nc.handler.BombType;
 import nc.handler.EntityBomb;
@@ -50,7 +50,7 @@ public class TileFusionReactorSteamBlockTop extends TileEntity implements IFluid
     	super.updateEntity();
     	getOffsets(xCoord, yCoord, zCoord);
     	if (this.worldObj.getBlock(xCoord, yCoord, zCoord) == NCBlocks.fusionReactorSteamBlockTop && (ppp(xCoord + 1, yCoord, zCoord) || ppp(xCoord - 1, yCoord, zCoord) || ppp(xCoord, yCoord + 1, zCoord) || ppp(xCoord, yCoord - 1, zCoord) || ppp(xCoord, yCoord, zCoord + 1) || ppp(xCoord, yCoord, zCoord - 1))) {
-			if (rand.nextFloat() > 0.9975) NCExplosion.createExplosion(new EntityBomb(worldObj).setType(BombType.BOMB_STANDARD), worldObj, (double)this.xCoord, (double)this.yCoord, (double)this.zCoord, NuclearCraft.fusionMeltdowns ? 12.5F : 0F, 20F, true);
+			if (rand.nextFloat() > 0.9975) NCExplosion.createExplosion(new EntityBomb(worldObj).setType(BombType.BOMB_STANDARD), worldObj, (double)this.xCoord, (double)this.yCoord, (double)this.zCoord, Config.fusionMeltdowns ? 12.5F : 0F, 20F, true);
 		}
     	markDirty();
     }

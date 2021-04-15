@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import nc.NuclearCraft;
+import nc.Config;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import codechicken.nei.PositionedStack;
@@ -70,7 +70,7 @@ public class NuclearFurnaceFuelRecipeHandler extends NuclearFurnaceRecipeHandler
     public List<String> handleItemTooltip(GuiRecipe gui, ItemStack stack, List<String> currenttip, int recipe) {
         CachednuclearfuelRecipe crecipe = (CachednuclearfuelRecipe) arecipes.get(recipe);
         nuclearfuelPair nuclearfuel = crecipe.nuclearfuel;
-        float burnTime = (float) ((double) (nuclearfuel.burnTime*NuclearCraft.nuclearFurnaceCookSpeed)/300);
+        float burnTime = (float) ((double) (nuclearfuel.burnTime*Config.nuclearFurnaceCookSpeed)/300);
 
         if (gui.isMouseOver(nuclearfuel.stack, recipe) && burnTime < 1) {
             burnTime = 1F / burnTime;

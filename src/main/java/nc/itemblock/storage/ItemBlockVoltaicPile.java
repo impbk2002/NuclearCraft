@@ -1,11 +1,11 @@
 package nc.itemblock.storage;
 
-import nc.NuclearCraft;
+import nc.Config;
 import net.minecraft.block.Block;
 
 public class ItemBlockVoltaicPile extends ItemBlockEnergyStorage {
 
 	public ItemBlockVoltaicPile(Block block) {
-		super(block, NuclearCraft.voltaicPileRF);
+		super(block, Config.voltaicPileRF);
 	}
 }

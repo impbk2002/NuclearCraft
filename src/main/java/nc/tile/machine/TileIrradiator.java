@@ -1,6 +1,6 @@
 package nc.tile.machine;
  
-import nc.NuclearCraft;
+import nc.Config;
 import nc.block.machine.BlockIrradiator;
 import nc.crafting.machine.IrradiatorRecipes;
 import nc.item.NCItems;
@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 public class TileIrradiator extends TileMachineBase {
 	
 	public TileIrradiator() {
-		super("irradiator", 250000, 2, 3, true, true, 2000, 200000, NuclearCraft.irradiatorSpeed, NuclearCraft.irradiatorEfficiency, IrradiatorRecipes.instance());
+		super("irradiator", 250000, 2, 3, true, true, 2000, 200000, Config.irradiatorSpeed, Config.irradiatorEfficiency, IrradiatorRecipes.instance());
 	}
 	
 	public void updateEntity() {

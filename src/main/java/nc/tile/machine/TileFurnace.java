@@ -1,12 +1,12 @@
 package nc.tile.machine;
 
-import nc.NuclearCraft;
+import nc.Config;
 import nc.block.machine.BlockFurnace;
 
 public class TileFurnace extends TileFuelUser {
 	
 	public TileFurnace() {
-		super(8000/NuclearCraft.metalFurnaceCookSpeed, "furnace");
+		super(8000/Config.metalFurnaceCookSpeed, "furnace");
 	}
 	
 	public void updateEntity() {

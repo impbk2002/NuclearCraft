@@ -1,13 +1,13 @@
 package nc.tile.machine;
  
-import nc.NuclearCraft;
+import nc.Config;
 import nc.block.machine.BlockRecycler;
 import nc.crafting.machine.RecyclerRecipes;
 
 public class TileRecycler extends TileMachineBase {
 	
 	public TileRecycler() {
-		super("fuelRecycler", 250000, 1, 4, true, true, 200, 8000, NuclearCraft.recyclerSpeed, NuclearCraft.recyclerEfficiency, RecyclerRecipes.instance());
+		super("fuelRecycler", 250000, 1, 4, true, true, 200, 8000, Config.recyclerSpeed, Config.recyclerEfficiency, RecyclerRecipes.instance());
 	}
 	
 	public void updateEntity() {

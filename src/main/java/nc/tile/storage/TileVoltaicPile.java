@@ -1,10 +1,10 @@
 package nc.tile.storage;
 
-import nc.NuclearCraft;
+import nc.Config;
 
 public class TileVoltaicPile extends TileStorage {
 
 	public TileVoltaicPile() {
-		super(NuclearCraft.voltaicPileRF);
+		super(Config.voltaicPileRF);
 	}
 }

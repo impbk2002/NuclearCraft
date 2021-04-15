@@ -2,7 +2,7 @@ package nc.handler;
 
 import java.util.Random;
 
-import nc.NuclearCraft;
+import nc.Config;
 import nc.block.NCBlocks;
 import nc.item.NCItems;
 import net.minecraft.block.Block;
@@ -32,7 +32,7 @@ public class BlockDropHandler {
 	
 	@SubscribeEvent
 	public void onBlockDrops(BlockEvent.HarvestDropsEvent event) {
-		if (NuclearCraft.extraDrops) {
+		if (Config.extraDrops) {
 			chanceExtra(event, Blocks.quartz_ore, new ItemStack(NCItems.material, 1, 70), 50);
 			
 			chanceMetaExtra(event, NCBlocks.blockOre, 6, new ItemStack(NCItems.material, 1, 33), 25);

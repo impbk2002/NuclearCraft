@@ -1,6 +1,6 @@
 package nc.tile.generator;
  
-import nc.NuclearCraft;
+import nc.Config;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
@@ -16,7 +16,7 @@ import cofh.api.energy.IEnergyReceiver;
 public abstract class TileContinuousBase extends TileEntity implements IEnergyHandler, IEnergyProvider, IEnergyConnection {
 	public int maxStorage;
 	public int energy;
-	public int power = NuclearCraft.WRTGRF;
+	public int power = Config.WRTGRF;
 	public EnergyStorage storage;
 	
 	public TileContinuousBase(String localName, int pow) {

@@ -2,6 +2,7 @@ package nc.block.generator;
 
 import java.util.Random;
 
+import nc.Config;
 import nc.NuclearCraft;
 import nc.block.NCBlocks;
 import nc.tile.generator.TileFissionReactorSteam;
@@ -205,7 +206,7 @@ public class BlockFissionReactorSteam extends BlockContainer {
 	
 	public int getComparatorInputOverride(World world, int x, int y, int z, int i) {
 		TileFissionReactorSteam tileentity = (TileFissionReactorSteam) world.getTileEntity(x, y, z);
-		return tileentity.heat <= NuclearCraft.fissionComparatorHeat ? (int) (15D*tileentity.heat/NuclearCraft.fissionComparatorHeat) : 15;
+		return tileentity.heat <= Config.fissionComparatorHeat ? (int) (15D*tileentity.heat/Config.fissionComparatorHeat) : 15;
 	}
 	
 	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {

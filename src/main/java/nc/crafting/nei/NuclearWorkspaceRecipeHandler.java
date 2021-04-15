@@ -4,10 +4,8 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
-import nc.crafting.workspace.NuclearWorkspaceCraftingManager;
-import nc.crafting.workspace.NuclearWorkspaceShapedOreRecipe;
-import nc.crafting.workspace.NuclearWorkspaceShapedRecipes;
-import nc.gui.crafting.GuiNuclearWorkspace;
+import nc.crafting.workspace.*;
+import nc.gui.GuiNuclearWorkspace;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
@@ -17,13 +15,8 @@ import org.lwjgl.opengl.GL11;
 
 import codechicken.core.ReflectionManager;
 import codechicken.lib.gui.GuiDraw;
-import codechicken.nei.NEIClientConfig;
-import codechicken.nei.NEIServerUtils;
-import codechicken.nei.PositionedStack;
-import codechicken.nei.api.DefaultOverlayRenderer;
-import codechicken.nei.api.IOverlayHandler;
-import codechicken.nei.api.IRecipeOverlayRenderer;
-import codechicken.nei.api.IStackPositioner;
+import codechicken.nei.*;
+import codechicken.nei.api.*;
 import codechicken.nei.recipe.TemplateRecipeHandler;
 
 public class NuclearWorkspaceRecipeHandler extends TemplateRecipeHandler

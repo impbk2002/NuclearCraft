@@ -1,5 +1,6 @@
 package nc.block.reactor;
 
+import nc.Config;
 import nc.NuclearCraft;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -22,7 +23,7 @@ public class BlockReactorBlock extends Block {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerBlockIcons(IIconRegister p_149651_1_) {
-		blockIcon = p_149651_1_.registerIcon("nc:reactor/" + this.getUnlocalizedName().substring(5) + (NuclearCraft.alternateCasing ? "Alt" : ""));
+		blockIcon = p_149651_1_.registerIcon("nc:reactor/" + this.getUnlocalizedName().substring(5) + (Config.alternateCasing ? "Alt" : ""));
 	}
 	
 	@SideOnly(Side.CLIENT)

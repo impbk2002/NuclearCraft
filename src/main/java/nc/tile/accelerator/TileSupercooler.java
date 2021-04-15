@@ -1,7 +1,8 @@
 package nc.tile.accelerator;
 
-import nc.NuclearCraft;
+import nc.Config;
 import nc.block.accelerator.BlockSupercooler;
+import nc.block.fluid.NCFluids;
 import nc.tile.machine.TileInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -23,7 +24,7 @@ public class TileSupercooler extends TileInventory implements IFluidHandler, ISi
 	public boolean flag1;
 	public int fluid;
 	public FluidTank tank;
-	public static int usage = NuclearCraft.electromagnetHe*NuclearCraft.EMUpdateRate/20;
+	public static int usage = Config.electromagnetHe*Config.EMUpdateRate/20;
 	private int tickCount = 0;
 	
 	public TileSupercooler() {
@@ -34,7 +35,7 @@ public class TileSupercooler extends TileInventory implements IFluidHandler, ISi
 	
 	public void updateEntity() {
 		super.updateEntity();
-		if (tickCount >= NuclearCraft.EMUpdateRate) {
+		if (tickCount >= Config.EMUpdateRate) {
 			if(!this.worldObj.isRemote) helium();
 			if (flag != flag1) { flag1 = flag; BlockSupercooler.updateBlockState(flag, this.worldObj, this.xCoord, this.yCoord, this.zCoord); }
 			tickCount = 0;
@@ -48,7 +49,7 @@ public class TileSupercooler extends TileInventory implements IFluidHandler, ISi
 	
 	public void helium() {
 		if (this.tank.getFluidAmount() >= usage) {
-			this.tank.fill(new FluidStack(NuclearCraft.liquidHelium, -usage), true);
+			this.tank.fill(new FluidStack(NCFluids.liquidHelium, -usage), true);
 			flag = true;
 		} else {
 			flag = false;
@@ -143,7 +144,7 @@ public class TileSupercooler extends TileInventory implements IFluidHandler, ISi
 	}
 
 	public boolean canFill(ForgeDirection from, Fluid fluid) {
-		return fluid == NuclearCraft.liquidHelium ? true : false;
+		return fluid == NCFluids.liquidHelium ? true : false;
 	}
 
 	public boolean canDrain(ForgeDirection from, Fluid fluid) {

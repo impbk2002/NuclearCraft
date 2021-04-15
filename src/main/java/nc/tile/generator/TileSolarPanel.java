@@ -1,11 +1,11 @@
 package nc.tile.generator;
 
-import nc.NuclearCraft;
+import nc.Config;
 
 public class TileSolarPanel extends TileContinuousBase {
 	
 	public TileSolarPanel() {
-		super("RTG", NuclearCraft.solarRF);
+		super("RTG", Config.solarRF);
 	}
 	
 	public void energy() {

@@ -1,8 +1,8 @@
 package nc.crafting.nei;
 
-import nc.NuclearCraft;
+import nc.Reference;
 import nc.block.NCBlocks;
-import nc.gui.crafting.GuiNuclearWorkspace;
+import nc.gui.GuiNuclearWorkspace;
 import nc.gui.generator.GuiFissionReactor;
 import nc.gui.generator.GuiFissionReactorSteam;
 import nc.gui.generator.GuiFusionReactor;
@@ -154,6 +154,6 @@ public class NEINCConfig implements IConfigureNEI {
 	}
 
 	public String getVersion() {
-		return NuclearCraft.version;
+		return Reference.MOD_VERSION;
 	}
 }

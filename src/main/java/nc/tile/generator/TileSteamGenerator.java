@@ -1,6 +1,7 @@
 package nc.tile.generator;
 
-import nc.NuclearCraft;
+import nc.Config;
+import nc.block.fluid.NCFluids;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
@@ -18,8 +19,8 @@ public class TileSteamGenerator extends TileContinuousBase implements IFluidHand
 	public FluidTank tank;
 
 	public TileSteamGenerator() {
-		super("steamGenerator", NuclearCraft.steamRFUsageRate*20);
-		tank = new FluidTank(NuclearCraft.steamRFUsageRate);
+		super("steamGenerator", Config.steamRFUsageRate*20);
+		tank = new FluidTank(Config.steamRFUsageRate);
 	}
 	
 	public void energy() {
@@ -40,7 +41,7 @@ public class TileSteamGenerator extends TileContinuousBase implements IFluidHand
 	}
 
 	public boolean canFill(ForgeDirection from, Fluid fluid) {
-		return fluid == NuclearCraft.steam || fluid == FluidRegistry.getFluid("steam");
+		return fluid == NCFluids.steam || fluid == FluidRegistry.getFluid("steam");
 	}
 
 	public boolean canDrain(ForgeDirection from, Fluid fluid) {

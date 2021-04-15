@@ -2,7 +2,7 @@ package nc.tile.generator;
 
 import java.util.Random;
 
-import nc.NuclearCraft;
+import nc.Config;
 import nc.block.NCBlocks;
 import nc.block.generator.BlockElectromagnet;
 import nc.tile.machine.TileInventory;
@@ -25,7 +25,7 @@ public class TileElectromagnet extends TileInventory implements IEnergyHandler, 
 	public boolean flag1;
 	public int energy;
 	public EnergyStorage storage;
-	public static int power = NuclearCraft.electromagnetRF*NuclearCraft.EMUpdateRate;
+	public static int power = Config.electromagnetRF*Config.EMUpdateRate;
 	private Random rand = new Random();
 	private int tickCount = 0;
 	
@@ -41,11 +41,11 @@ public class TileElectromagnet extends TileInventory implements IEnergyHandler, 
 	
 	public void updateEntity() {
 		super.updateEntity();
-		if (tickCount >= NuclearCraft.EMUpdateRate) {
+		if (tickCount >= Config.EMUpdateRate) {
 			if(!this.worldObj.isRemote) energy();
 			if (flag != flag1) { flag1 = flag; BlockElectromagnet.updateBlockState(flag, this.worldObj, this.xCoord, this.yCoord, this.zCoord); }
 			if (!flag1 && this.worldObj.getBlock(xCoord, yCoord, zCoord) == NCBlocks.electromagnetIdle && (pp(xCoord + 1, yCoord, zCoord) || pp(xCoord - 1, yCoord, zCoord) || pp(xCoord, yCoord + 1, zCoord) || pp(xCoord, yCoord - 1, zCoord) || pp(xCoord, yCoord, zCoord + 1) || pp(xCoord, yCoord, zCoord - 1))) {
-				if (rand.nextFloat() > 1 - 0.005*NuclearCraft.EMUpdateRate) worldObj.setBlock(xCoord, yCoord, zCoord, Blocks.air);
+				if (rand.nextFloat() > 1 - 0.005*Config.EMUpdateRate) worldObj.setBlock(xCoord, yCoord, zCoord, Blocks.air);
 			}
 			tickCount = 0;
 		} else tickCount ++;

@@ -1,6 +1,7 @@
 package nc.tile.generator;
 
-import nc.NuclearCraft;
+import nc.Config;
+import nc.block.fluid.NCFluids;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
@@ -22,8 +23,8 @@ public class TileDenseSteamDecompressor extends TileEntity implements IFluidHand
 
 	public TileDenseSteamDecompressor() {
 		super();
-		tank = new FluidTank(NuclearCraft.steamDecompressRate);
-		tank2 = new FluidTank(NuclearCraft.steamDecompressRate*1000);
+		tank = new FluidTank(Config.steamDecompressRate);
+		tank2 = new FluidTank(Config.steamDecompressRate*1000);
 	}
 	
 	public void updateEntity() {
@@ -46,13 +47,13 @@ public class TileDenseSteamDecompressor extends TileEntity implements IFluidHand
 	
 	public void steam() {
 		if (tank.getFluidAmount() != 0) {
-			if (tank.getFluid().getFluid() != NuclearCraft.superdenseSteam && tank.getFluid().getFluid() != FluidRegistry.getFluid("superdenseSteam")) {
-				tank.drain(NuclearCraft.steamDecompressRate, true);
+			if (tank.getFluid().getFluid() != NCFluids.superdenseSteam && tank.getFluid().getFluid() != FluidRegistry.getFluid("superdenseSteam")) {
+				tank.drain(Config.steamDecompressRate, true);
 			}
-			else if (tank.getFluid().getFluid() == NuclearCraft.superdenseSteam || tank.getFluid().getFluid() == FluidRegistry.getFluid("superdenseSteam")) {
-				for (int i = 0; i < NuclearCraft.steamDecompressRate; i++) {
+			else if (tank.getFluid().getFluid() == NCFluids.superdenseSteam || tank.getFluid().getFluid() == FluidRegistry.getFluid("superdenseSteam")) {
+				for (int i = 0; i < Config.steamDecompressRate; i++) {
 					if (tank2.getFluidAmount() <= tank2.getCapacity() - 1000 && tank.getFluidAmount() != 0) {
-						tank2.fill(new FluidStack(NuclearCraft.denseSteam, 1000), true);
+						tank2.fill(new FluidStack(NCFluids.denseSteam, 1000), true);
 						tank.drain(1, true);
 					} else break;
 				}
@@ -73,7 +74,7 @@ public class TileDenseSteamDecompressor extends TileEntity implements IFluidHand
 	}
 
 	public boolean canFill(ForgeDirection from, Fluid fluid) {
-		return fluid == NuclearCraft.superdenseSteam || fluid == FluidRegistry.getFluid("superdenseSteam");
+		return fluid == NCFluids.superdenseSteam || fluid == FluidRegistry.getFluid("superdenseSteam");
 	}
 
 	public boolean canDrain(ForgeDirection from, Fluid fluid) {

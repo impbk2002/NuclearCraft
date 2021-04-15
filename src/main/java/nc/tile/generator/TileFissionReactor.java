@@ -1,6 +1,6 @@
 package nc.tile.generator;
 
-import nc.NuclearCraft;
+import nc.Config;
 import nc.block.NCBlocks;
 import nc.block.generator.BlockFissionReactor;
 import nc.handler.BombType;
@@ -42,8 +42,8 @@ public class TileFissionReactor extends TileGeneratorInventory {
 	public int heat;
 	public int efficiency;
 	public int numberOfCells;
-	private static double pMult = NuclearCraft.fissionRF;
-	private static double hMult = NuclearCraft.fissionHeat;
+	private static double pMult = Config.fissionRF;
+	private static double hMult = Config.fissionHeat;
 	public String typeoffuel = StatCollector.translateToLocal("gui.noFuel");
 	public int MBNumber;
 	public String problem = StatCollector.translateToLocal("gui.casingIncomplete");
@@ -130,11 +130,11 @@ public class TileFissionReactor extends TileGeneratorInventory {
 	public void overheat() {
 		if (heat >= 1000000) {
 			
-			if (NuclearCraft.nuclearMeltdowns) {
-				if (getBlockMetadata() == 4) NCExplosion.createExplosion(new EntityBomb(worldObj).setType(BombType.BOMB_STANDARD), worldObj, xCoord+((x0 + x1)/2), yCoord+((y0 + y1)/2), zCoord+((z0 + z1)/2), 0.01F*(lx + ly + lz)*NuclearCraft.explosionRadius, 0.01F*(lx + ly + lz)*NuclearCraft.explosionRadius, true);
-				else if (getBlockMetadata() == 2) NCExplosion.createExplosion(new EntityBomb(worldObj).setType(BombType.BOMB_STANDARD), worldObj, xCoord-((z0 + z1)/2), yCoord+((y0 + y1)/2), zCoord+((x0 + x1)/2), 0.01F*(lx + ly + lz)*NuclearCraft.explosionRadius, 0.01F*(lx + ly + lz)*NuclearCraft.explosionRadius, true);
-				else if (getBlockMetadata() == 5) NCExplosion.createExplosion(new EntityBomb(worldObj).setType(BombType.BOMB_STANDARD), worldObj, xCoord-((x0 + x1)/2), yCoord+((y0 + y1)/2), zCoord-((z0 + z1)/2), 0.01F*(lx + ly + lz)*NuclearCraft.explosionRadius, 0.01F*(lx + ly + lz)*NuclearCraft.explosionRadius, true);
-				else if (getBlockMetadata() == 3) NCExplosion.createExplosion(new EntityBomb(worldObj).setType(BombType.BOMB_STANDARD), worldObj, xCoord+((z0 + z1)/2), yCoord+((y0 + y1)/2), zCoord-((x0 + x1)/2), 0.01F*(lx + ly + lz)*NuclearCraft.explosionRadius, 0.01F*(lx + ly + lz)*NuclearCraft.explosionRadius, true);
+			if (Config.nuclearMeltdowns) {
+				if (getBlockMetadata() == 4) NCExplosion.createExplosion(new EntityBomb(worldObj).setType(BombType.BOMB_STANDARD), worldObj, xCoord+((x0 + x1)/2), yCoord+((y0 + y1)/2), zCoord+((z0 + z1)/2), 0.01F*(lx + ly + lz)*Config.explosionRadius, 0.01F*(lx + ly + lz)*Config.explosionRadius, true);
+				else if (getBlockMetadata() == 2) NCExplosion.createExplosion(new EntityBomb(worldObj).setType(BombType.BOMB_STANDARD), worldObj, xCoord-((z0 + z1)/2), yCoord+((y0 + y1)/2), zCoord+((x0 + x1)/2), 0.01F*(lx + ly + lz)*Config.explosionRadius, 0.01F*(lx + ly + lz)*Config.explosionRadius, true);
+				else if (getBlockMetadata() == 5) NCExplosion.createExplosion(new EntityBomb(worldObj).setType(BombType.BOMB_STANDARD), worldObj, xCoord-((x0 + x1)/2), yCoord+((y0 + y1)/2), zCoord-((z0 + z1)/2), 0.01F*(lx + ly + lz)*Config.explosionRadius, 0.01F*(lx + ly + lz)*Config.explosionRadius, true);
+				else if (getBlockMetadata() == 3) NCExplosion.createExplosion(new EntityBomb(worldObj).setType(BombType.BOMB_STANDARD), worldObj, xCoord+((z0 + z1)/2), yCoord+((y0 + y1)/2), zCoord-((x0 + x1)/2), 0.01F*(lx + ly + lz)*Config.explosionRadius, 0.01F*(lx + ly + lz)*Config.explosionRadius, true);
 				worldObj.setBlockToAir(xCoord, yCoord, zCoord);
 			} else heat = 1000000;
 		}
@@ -180,7 +180,7 @@ public class TileFissionReactor extends TileGeneratorInventory {
 			flag = false;
 		}
 
-		if (tickCount >= NuclearCraft.fissionUpdateRate) {
+		if (tickCount >= Config.fissionUpdateRate) {
 			if (complete == 1) {
 				for (int z = z0 + 1; z <= z1 - 1; z++) {
 					for (int x = x0 + 1; x <= x1 - 1; x++) {
@@ -214,168 +214,168 @@ public class TileFissionReactor extends TileGeneratorInventory {
 				
 				//LEU
 				if (fueltype == 1 || fueltype == 7) {
-					baseRF = NuclearCraft.baseRFLEU;
-					baseFuel = NuclearCraft.baseFuelLEU;
-					baseHeat = NuclearCraft.baseHeatLEU;
+					baseRF = Config.baseRFLEU;
+					baseFuel = Config.baseFuelLEU;
+					baseHeat = Config.baseHeatLEU;
 				}
 	
 				//HEU
 				if (fueltype == 2 || fueltype == 8) {
-					baseRF = NuclearCraft.baseRFHEU;
-					baseFuel = NuclearCraft.baseFuelHEU;
-					baseHeat = NuclearCraft.baseHeatHEU;
+					baseRF = Config.baseRFHEU;
+					baseFuel = Config.baseFuelHEU;
+					baseHeat = Config.baseHeatHEU;
 				}
 	
 				//LEP
 				if (fueltype == 3 || fueltype == 9) {
-					baseRF = NuclearCraft.baseRFLEP;
-					baseFuel = NuclearCraft.baseFuelLEP;
-					baseHeat = NuclearCraft.baseHeatLEP;
+					baseRF = Config.baseRFLEP;
+					baseFuel = Config.baseFuelLEP;
+					baseHeat = Config.baseHeatLEP;
 				}
 	
 				//HEP
 				if (fueltype == 4 || fueltype == 10) {
-					baseRF = NuclearCraft.baseRFHEP;
-					baseFuel = NuclearCraft.baseFuelHEP;
-					baseHeat = NuclearCraft.baseHeatHEP;
+					baseRF = Config.baseRFHEP;
+					baseFuel = Config.baseFuelHEP;
+					baseHeat = Config.baseHeatHEP;
 				}
 	
 				//MOX
 				if (fueltype == 5 || fueltype == 11) {
-					baseRF = NuclearCraft.baseRFMOX;
-					baseFuel = NuclearCraft.baseFuelMOX;
-					baseHeat = NuclearCraft.baseHeatMOX;
+					baseRF = Config.baseRFMOX;
+					baseFuel = Config.baseFuelMOX;
+					baseHeat = Config.baseHeatMOX;
 				}
 				
 				//TBU
 				if (fueltype == 6) {
-					baseRF = NuclearCraft.baseRFTBU;
-					baseFuel = NuclearCraft.baseFuelTBU;
-					baseHeat = NuclearCraft.baseHeatTBU;
+					baseRF = Config.baseRFTBU;
+					baseFuel = Config.baseFuelTBU;
+					baseHeat = Config.baseHeatTBU;
 				}
 				
 				//LEU-Ox
 				if (fueltype == 12 || fueltype == 16) {
-					baseRF = NuclearCraft.baseRFLEUOx;
-					baseFuel = NuclearCraft.baseFuelLEUOx;
-					baseHeat = NuclearCraft.baseHeatLEUOx;
+					baseRF = Config.baseRFLEUOx;
+					baseFuel = Config.baseFuelLEUOx;
+					baseHeat = Config.baseHeatLEUOx;
 				}
 	
 				//HEU-Ox
 				if (fueltype == 13 || fueltype == 17) {
-					baseRF = NuclearCraft.baseRFHEUOx;
-					baseFuel = NuclearCraft.baseFuelHEUOx;
-					baseHeat = NuclearCraft.baseHeatHEUOx;
+					baseRF = Config.baseRFHEUOx;
+					baseFuel = Config.baseFuelHEUOx;
+					baseHeat = Config.baseHeatHEUOx;
 				}
 	
 				//LEP-Ox
 				if (fueltype == 14 || fueltype == 18) {
-					baseRF = NuclearCraft.baseRFLEPOx;
-					baseFuel = NuclearCraft.baseFuelLEPOx;
-					baseHeat = NuclearCraft.baseHeatLEPOx;
+					baseRF = Config.baseRFLEPOx;
+					baseFuel = Config.baseFuelLEPOx;
+					baseHeat = Config.baseHeatLEPOx;
 				}
 	
 				//HEP-Ox
 				if (fueltype == 15 || fueltype == 19) {
-					baseRF = NuclearCraft.baseRFHEPOx;
-					baseFuel = NuclearCraft.baseFuelHEPOx;
-					baseHeat = NuclearCraft.baseHeatHEPOx;
+					baseRF = Config.baseRFHEPOx;
+					baseFuel = Config.baseFuelHEPOx;
+					baseHeat = Config.baseHeatHEPOx;
 				}
 				
 				//LEN
 	        	if (fueltype == 20) {
-	        		baseRF = NuclearCraft.baseRFLEN;
-	            	baseFuel = NuclearCraft.baseFuelLEN;
-	            	baseHeat = NuclearCraft.baseHeatLEN;
+	        		baseRF = Config.baseRFLEN;
+	            	baseFuel = Config.baseFuelLEN;
+	            	baseHeat = Config.baseHeatLEN;
 	        	}
 	
 	        	//HEN
 	        	if (fueltype == 21) {
-	        		baseRF = NuclearCraft.baseRFHEN;
-	            	baseFuel = NuclearCraft.baseFuelHEN;
-	            	baseHeat = NuclearCraft.baseHeatHEN;
+	        		baseRF = Config.baseRFHEN;
+	            	baseFuel = Config.baseFuelHEN;
+	            	baseHeat = Config.baseHeatHEN;
 	        	}
 	        	
 	        	//LEA
 	        	if (fueltype == 22) {
-	        		baseRF = NuclearCraft.baseRFLEA;
-	            	baseFuel = NuclearCraft.baseFuelLEA;
-	            	baseHeat = NuclearCraft.baseHeatLEA;
+	        		baseRF = Config.baseRFLEA;
+	            	baseFuel = Config.baseFuelLEA;
+	            	baseHeat = Config.baseHeatLEA;
 	        	}
 	
 	        	//HEA
 	        	if (fueltype == 23) {
-	        		baseRF = NuclearCraft.baseRFHEA;
-	            	baseFuel = NuclearCraft.baseFuelHEA;
-	            	baseHeat = NuclearCraft.baseHeatHEA;
+	        		baseRF = Config.baseRFHEA;
+	            	baseFuel = Config.baseFuelHEA;
+	            	baseHeat = Config.baseHeatHEA;
 	        	}
 	        	
 	        	//LEC
 	        	if (fueltype == 24 || fueltype == 26 || fueltype == 28) {
-	        		baseRF = NuclearCraft.baseRFLEC;
-	            	baseFuel = NuclearCraft.baseFuelLEC;
-	            	baseHeat = NuclearCraft.baseHeatLEC;
+	        		baseRF = Config.baseRFLEC;
+	            	baseFuel = Config.baseFuelLEC;
+	            	baseHeat = Config.baseHeatLEC;
 	        	}
 	
 	        	//HEC
 	        	if (fueltype == 25 || fueltype == 27 || fueltype == 29) {
-	        		baseRF = NuclearCraft.baseRFHEC;
-	            	baseFuel = NuclearCraft.baseFuelHEC;
-	            	baseHeat = NuclearCraft.baseHeatHEC;
+	        		baseRF = Config.baseRFHEC;
+	            	baseFuel = Config.baseFuelHEC;
+	            	baseHeat = Config.baseHeatHEC;
 	        	}
 	        	
 	        	//LEN-Ox
 	        	if (fueltype == 30) {
-	        		baseRF = NuclearCraft.baseRFLENOx;
-	            	baseFuel = NuclearCraft.baseFuelLENOx;
-	            	baseHeat = NuclearCraft.baseHeatLENOx;
+	        		baseRF = Config.baseRFLENOx;
+	            	baseFuel = Config.baseFuelLENOx;
+	            	baseHeat = Config.baseHeatLENOx;
 	        	}
 	
 	        	//HEN-Ox
 	        	if (fueltype == 31) {
-	        		baseRF = NuclearCraft.baseRFHENOx;
-	            	baseFuel = NuclearCraft.baseFuelHENOx;
-	            	baseHeat = NuclearCraft.baseHeatHENOx;
+	        		baseRF = Config.baseRFHENOx;
+	            	baseFuel = Config.baseFuelHENOx;
+	            	baseHeat = Config.baseHeatHENOx;
 	        	}
 	        	
 	        	//LEA-Ox
 	        	if (fueltype == 32) {
-	        		baseRF = NuclearCraft.baseRFLEAOx;
-	            	baseFuel = NuclearCraft.baseFuelLEAOx;
-	            	baseHeat = NuclearCraft.baseHeatLEAOx;
+	        		baseRF = Config.baseRFLEAOx;
+	            	baseFuel = Config.baseFuelLEAOx;
+	            	baseHeat = Config.baseHeatLEAOx;
 	        	}
 	
 	        	//HEA-Ox
 	        	if (fueltype == 33) {
-	        		baseRF = NuclearCraft.baseRFHEAOx;
-	            	baseFuel = NuclearCraft.baseFuelHEAOx;
-	            	baseHeat = NuclearCraft.baseHeatHEAOx;
+	        		baseRF = Config.baseRFHEAOx;
+	            	baseFuel = Config.baseFuelHEAOx;
+	            	baseHeat = Config.baseHeatHEAOx;
 	        	}
 	        	
 	        	//LEC-Ox
 	        	if (fueltype == 34 || fueltype == 36 || fueltype == 38) {
-	        		baseRF = NuclearCraft.baseRFLECOx;
-	            	baseFuel = NuclearCraft.baseFuelLECOx;
-	            	baseHeat = NuclearCraft.baseHeatLECOx;
+	        		baseRF = Config.baseRFLECOx;
+	            	baseFuel = Config.baseFuelLECOx;
+	            	baseHeat = Config.baseHeatLECOx;
 	        	}
 	
 	        	//HEC-Ox
 	        	if (fueltype == 35 || fueltype == 37 || fueltype == 39) {
-	        		baseRF = NuclearCraft.baseRFHECOx;
-	            	baseFuel = NuclearCraft.baseFuelHECOx;
-	            	baseHeat = NuclearCraft.baseHeatHECOx;
+	        		baseRF = Config.baseRFHECOx;
+	            	baseFuel = Config.baseFuelHECOx;
+	            	baseHeat = Config.baseHeatHECOx;
 	        	}
 	        	
 	        	//TBU-Ox
 	        	if (fueltype == 40) {
-	        		baseRF = NuclearCraft.baseRFTBUOx;
-	            	baseFuel = NuclearCraft.baseFuelTBUOx;
-	            	baseHeat = NuclearCraft.baseHeatTBUOx;
+	        		baseRF = Config.baseRFTBUOx;
+	            	baseFuel = Config.baseFuelTBUOx;
+	            	baseHeat = Config.baseHeatTBUOx;
 	        	}
 				
 				energyThisTick += baseRF*(10000*pMult + heat)*(numberOfCells + 2*adj1 + 3*adj2 + 4*adj3 + 5*adj4 + 6*adj5 + 7*adj6) /* *Math.cbrt((lx - 2)*(ly - 2)*(lz - 2)) */ /1000000;
 				heatThisTick += baseHeat*(numberOfCells + 3*adj1 + 6*adj2 + 10*adj3 + 15*adj4 + 21*adj5 + 28*adj6);
-				fuelThisTick += (numberOfCells + adj1 + adj2 + adj3 + adj4 + adj5 + adj6)*baseFuel/NuclearCraft.fissionEfficiency;
+				fuelThisTick += (numberOfCells + adj1 + adj2 + adj3 + adj4 + adj5 + adj6)*baseFuel/Config.fissionEfficiency;
 				
 				for (int z = z0 + 1; z <= z1 - 1; z++) {
 					for (int x = x0 + 1; x <= x1 - 1; x++) {
@@ -385,7 +385,7 @@ public class TileFissionReactor extends TileGeneratorInventory {
 								if (surroundOr(NCBlocks.cellBlock, x, y, z)) energyThisTick += (10000*pMult + heat)*baseRF*(numberOfCells + adj1 + adj2 + adj3 + adj4 + adj5 + adj6)/10000000;
 							}
 							if(find(NCBlocks.speedBlock, x, y, z) && (numberOfCells + adj1 + adj2 + adj3 + adj4 + adj5 + adj6) > 0) {
-								if (lx - 2 + ly - 2 + lz - 2 > 0) fuelThisTick += (numberOfCells + adj1 + adj2 + adj3 + adj4 + adj5 + adj6)*baseFuel/(NuclearCraft.fissionEfficiency*(lx - 2 + ly - 2 + lz - 2));
+								if (lx - 2 + ly - 2 + lz - 2 > 0) fuelThisTick += (numberOfCells + adj1 + adj2 + adj3 + adj4 + adj5 + adj6)*baseFuel/(Config.fissionEfficiency*(lx - 2 + ly - 2 + lz - 2));
 							}
 						}
 					}
@@ -397,140 +397,140 @@ public class TileFissionReactor extends TileGeneratorInventory {
 				
 				//LEU
 				if (fueltype == 1 || fueltype == 7) {
-					baseRF = NuclearCraft.baseRFLEU;
-					baseHeat = NuclearCraft.baseHeatLEU;
+					baseRF = Config.baseRFLEU;
+					baseHeat = Config.baseHeatLEU;
 				}
 	
 				//HEU
 				if (fueltype == 2 || fueltype == 8) {
-					baseRF = NuclearCraft.baseRFHEU;
-					baseHeat = NuclearCraft.baseHeatHEU;
+					baseRF = Config.baseRFHEU;
+					baseHeat = Config.baseHeatHEU;
 				}
 	
 				//LEP
 				if (fueltype == 3 || fueltype == 9) {
-					baseRF = NuclearCraft.baseRFLEP;
-					baseHeat = NuclearCraft.baseHeatLEP;
+					baseRF = Config.baseRFLEP;
+					baseHeat = Config.baseHeatLEP;
 				}
 	
 				//HEP
 				if (fueltype == 4 || fueltype == 10) {
-					baseRF = NuclearCraft.baseRFHEP;
-					baseHeat = NuclearCraft.baseHeatHEP;
+					baseRF = Config.baseRFHEP;
+					baseHeat = Config.baseHeatHEP;
 				}
 	
 				//MOX
 				if (fueltype == 5 || fueltype == 11) {
-					baseRF = NuclearCraft.baseRFMOX;
-					baseHeat = NuclearCraft.baseHeatMOX;
+					baseRF = Config.baseRFMOX;
+					baseHeat = Config.baseHeatMOX;
 				}
 				
 				//TBU
 				if (fueltype == 6) {
-					baseRF = NuclearCraft.baseRFTBU;
-					baseHeat = NuclearCraft.baseHeatTBU;
+					baseRF = Config.baseRFTBU;
+					baseHeat = Config.baseHeatTBU;
 				}
 				
 				//LEU-Ox
 				if (fueltype == 12 || fueltype == 16) {
-					baseRF = NuclearCraft.baseRFLEUOx;
-					baseHeat = NuclearCraft.baseHeatLEUOx;
+					baseRF = Config.baseRFLEUOx;
+					baseHeat = Config.baseHeatLEUOx;
 				}
 	
 				//HEU-Ox
 				if (fueltype == 13 || fueltype == 17) {
-					baseRF = NuclearCraft.baseRFHEUOx;
-					baseHeat = NuclearCraft.baseHeatHEUOx;
+					baseRF = Config.baseRFHEUOx;
+					baseHeat = Config.baseHeatHEUOx;
 				}
 	
 				//LEP-Ox
 				if (fueltype == 14 || fueltype == 18) {
-					baseRF = NuclearCraft.baseRFLEPOx;
-					baseHeat = NuclearCraft.baseHeatLEPOx;
+					baseRF = Config.baseRFLEPOx;
+					baseHeat = Config.baseHeatLEPOx;
 				}
 	
 				//HEP-Ox
 				if (fueltype == 15 || fueltype == 19) {
-					baseRF = NuclearCraft.baseRFHEPOx;
-					baseHeat = NuclearCraft.baseHeatHEPOx;
+					baseRF = Config.baseRFHEPOx;
+					baseHeat = Config.baseHeatHEPOx;
 				}
 				
 				//LEN
 	        	if (fueltype == 20) {
-	        		baseRF = NuclearCraft.baseRFLEN;
-	            	baseHeat = NuclearCraft.baseHeatLEN;
+	        		baseRF = Config.baseRFLEN;
+	            	baseHeat = Config.baseHeatLEN;
 	        	}
 	
 	        	//HEN
 	        	if (fueltype == 21) {
-	        		baseRF = NuclearCraft.baseRFHEN;
-	            	baseHeat = NuclearCraft.baseHeatHEN;
+	        		baseRF = Config.baseRFHEN;
+	            	baseHeat = Config.baseHeatHEN;
 	        	}
 	        	
 	        	//LEA
 	        	if (fueltype == 22) {
-	        		baseRF = NuclearCraft.baseRFLEA;
-	            	baseHeat = NuclearCraft.baseHeatLEA;
+	        		baseRF = Config.baseRFLEA;
+	            	baseHeat = Config.baseHeatLEA;
 	        	}
 	
 	        	//HEA
 	        	if (fueltype == 23) {
-	        		baseRF = NuclearCraft.baseRFHEA;
-	            	baseHeat = NuclearCraft.baseHeatHEA;
+	        		baseRF = Config.baseRFHEA;
+	            	baseHeat = Config.baseHeatHEA;
 	        	}
 	        	
 	        	//LEC
 	        	if (fueltype == 24 || fueltype == 26 || fueltype == 28) {
-	        		baseRF = NuclearCraft.baseRFLEC;
-	            	baseHeat = NuclearCraft.baseHeatLEC;
+	        		baseRF = Config.baseRFLEC;
+	            	baseHeat = Config.baseHeatLEC;
 	        	}
 	
 	        	//HEC
 	        	if (fueltype == 25 || fueltype == 27 || fueltype == 29) {
-	        		baseRF = NuclearCraft.baseRFHEC;
-	            	baseHeat = NuclearCraft.baseHeatHEC;
+	        		baseRF = Config.baseRFHEC;
+	            	baseHeat = Config.baseHeatHEC;
 	        	}
 	        	
 	        	//LEN-Ox
 	        	if (fueltype == 30) {
-	        		baseRF = NuclearCraft.baseRFLENOx;
-	            	baseHeat = NuclearCraft.baseHeatLENOx;
+	        		baseRF = Config.baseRFLENOx;
+	            	baseHeat = Config.baseHeatLENOx;
 	        	}
 	
 	        	//HEN-Ox
 	        	if (fueltype == 31) {
-	        		baseRF = NuclearCraft.baseRFHENOx;
-	            	baseHeat = NuclearCraft.baseHeatHENOx;
+	        		baseRF = Config.baseRFHENOx;
+	            	baseHeat = Config.baseHeatHENOx;
 	        	}
 	        	
 	        	//LEA-Ox
 	        	if (fueltype == 32) {
-	        		baseRF = NuclearCraft.baseRFLEAOx;
-	            	baseHeat = NuclearCraft.baseHeatLEAOx;
+	        		baseRF = Config.baseRFLEAOx;
+	            	baseHeat = Config.baseHeatLEAOx;
 	        	}
 	
 	        	//HEA-Ox
 	        	if (fueltype == 33) {
-	        		baseRF = NuclearCraft.baseRFHEAOx;
-	            	baseHeat = NuclearCraft.baseHeatHEAOx;
+	        		baseRF = Config.baseRFHEAOx;
+	            	baseHeat = Config.baseHeatHEAOx;
 	        	}
 	        	
 	        	//LEC-Ox
 	        	if (fueltype == 34 || fueltype == 36 || fueltype == 38) {
-	        		baseRF = NuclearCraft.baseRFLECOx;
-	            	baseHeat = NuclearCraft.baseHeatLECOx;
+	        		baseRF = Config.baseRFLECOx;
+	            	baseHeat = Config.baseHeatLECOx;
 	        	}
 	
 	        	//HEC-Ox
 	        	if (fueltype == 35 || fueltype == 37 || fueltype == 39) {
-	        		baseRF = NuclearCraft.baseRFHECOx;
-	            	baseHeat = NuclearCraft.baseHeatHECOx;
+	        		baseRF = Config.baseRFHECOx;
+	            	baseHeat = Config.baseHeatHECOx;
 	        	}
 	        	
 	        	//TBU-Ox
 	        	if (fueltype == 40) {
-	        		baseRF = NuclearCraft.baseRFTBUOx;
-	            	baseHeat = NuclearCraft.baseHeatTBUOx;
+	        		baseRF = Config.baseRFTBUOx;
+	            	baseHeat = Config.baseHeatTBUOx;
 	        	}
 				
 				fakeEnergyThisTick += baseRF*(10000*pMult + heat)*(numberOfCells + 2*adj1 + 3*adj2 + 4*adj3 + 5*adj4 + 6*adj5 + 7*adj6) /* *Math.cbrt((lx - 2)*(ly - 2)*(lz - 2))*/ /1000000;
@@ -557,41 +557,41 @@ public class TileFissionReactor extends TileGeneratorInventory {
 					for (int x = x0 + 1; x <= x1 - 1; x++) {
 						for (int y = y0 + 1; y <= y1 - 1; y++) {
 							if(find(NCBlocks.coolerBlock, x, y, z)) {
-								coolerHeatThisTick -= NuclearCraft.standardCool;
-								if (surroundOr(NCBlocks.coolerBlock, x, y, z)) coolerHeatThisTick -= NuclearCraft.standardCool;
+								coolerHeatThisTick -= Config.standardCool;
+								if (surroundOr(NCBlocks.coolerBlock, x, y, z)) coolerHeatThisTick -= Config.standardCool;
 							}
 							if(find(NCBlocks.waterCoolerBlock, x, y, z)) {
-								coolerHeatThisTick -= NuclearCraft.waterCool;
-								if (surroundOr(NCBlocks.reactorBlock, x, y, z)) coolerHeatThisTick -= NuclearCraft.waterCool;
+								coolerHeatThisTick -= Config.waterCool;
+								if (surroundOr(NCBlocks.reactorBlock, x, y, z)) coolerHeatThisTick -= Config.waterCool;
 							}
 							if(find(NCBlocks.cryotheumCoolerBlock, x, y, z)) {
-								coolerHeatThisTick -= NuclearCraft.cryotheumCool;
-								if (surroundNAnd(NCBlocks.cryotheumCoolerBlock, x, y, z)) coolerHeatThisTick -= NuclearCraft.cryotheumCool;
+								coolerHeatThisTick -= Config.cryotheumCool;
+								if (surroundNAnd(NCBlocks.cryotheumCoolerBlock, x, y, z)) coolerHeatThisTick -= Config.cryotheumCool;
 							}
 							if(find(NCBlocks.redstoneCoolerBlock, x, y, z)) {
-								coolerHeatThisTick -= NuclearCraft.redstoneCool;
-								if (surroundOr(NCBlocks.cellBlock, x, y, z)) coolerHeatThisTick -= NuclearCraft.redstoneCool;
+								coolerHeatThisTick -= Config.redstoneCool;
+								if (surroundOr(NCBlocks.cellBlock, x, y, z)) coolerHeatThisTick -= Config.redstoneCool;
 							}
 							if(find(NCBlocks.enderiumCoolerBlock, x, y, z)) {
-								coolerHeatThisTick -= NuclearCraft.enderiumCool;
-								if (surroundOr(NCBlocks.graphiteBlock, x, y, z)) coolerHeatThisTick -= NuclearCraft.enderiumCool;
+								coolerHeatThisTick -= Config.enderiumCool;
+								if (surroundOr(NCBlocks.graphiteBlock, x, y, z)) coolerHeatThisTick -= Config.enderiumCool;
 							}
 							if(find(NCBlocks.glowstoneCoolerBlock, x, y, z)) {
-								coolerHeatThisTick -= NuclearCraft.glowstoneCool;
-								if (surroundAnd(NCBlocks.graphiteBlock, x, y, z)) coolerHeatThisTick -= 3*NuclearCraft.glowstoneCool;
+								coolerHeatThisTick -= Config.glowstoneCool;
+								if (surroundAnd(NCBlocks.graphiteBlock, x, y, z)) coolerHeatThisTick -= 3*Config.glowstoneCool;
 							}
 							if(find(NCBlocks.heliumCoolerBlock, x, y, z)) {
-								coolerHeatThisTick -= NuclearCraft.heliumCool;
+								coolerHeatThisTick -= Config.heliumCool;
 							}
 							if(find(NCBlocks.coolantCoolerBlock, x, y, z)) {
-								coolerHeatThisTick -= NuclearCraft.coolantCool;
-								if (surroundOr(NCBlocks.waterCoolerBlock, x, y, z)) coolerHeatThisTick -= NuclearCraft.coolantCool;
+								coolerHeatThisTick -= Config.coolantCool;
+								if (surroundOr(NCBlocks.waterCoolerBlock, x, y, z)) coolerHeatThisTick -= Config.coolantCool;
 							}
 							if(find(Blocks.water, x, y, z)) coolerHeatThisTick -= 1;
 						}
 					}
 				}
-				if (lx - 2 + ly - 2 + lz - 2 <= 3) coolerHeatThisTick -= NuclearCraft.baseHeatTBU;
+				if (lx - 2 + ly - 2 + lz - 2 <= 3) coolerHeatThisTick -= Config.baseHeatTBU;
 			}
 			E = (int) (energyThisTick + fakeEnergyThisTick);
 			EReal = (int) energyThisTick;
@@ -852,8 +852,8 @@ public class TileFissionReactor extends TileGeneratorInventory {
 	}
 	
 	private boolean checkStructure() {
-		if (tickCount >= NuclearCraft.fissionUpdateRate) {
-			int l = NuclearCraft.fissionMaxLength + 2;
+		if (tickCount >= Config.fissionUpdateRate) {
+			int l = Config.fissionMaxLength + 2;
 			Block b = NCBlocks.reactorBlock;
 			Block r = NCBlocks.fissionReactorGraphiteIdle;
 			Block rr = NCBlocks.fissionReactorGraphiteActive;
