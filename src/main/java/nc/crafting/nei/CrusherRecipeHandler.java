@@ -11,7 +11,7 @@ import java.util.Set;
 
 import nc.Config;
 import nc.crafting.machine.CrusherRecipesOld;
-import nc.gui.machine.GuiCrusher;
+import nc.client.gui.machine.GuiCrusher;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.gui.inventory.GuiContainer;

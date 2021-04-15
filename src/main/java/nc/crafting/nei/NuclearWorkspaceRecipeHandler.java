@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nc.crafting.workspace.*;
-import nc.gui.GuiNuclearWorkspace;
+import nc.client.gui.GuiNuclearWorkspace;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import nc.crafting.machine.CrusherRecipes;
-import nc.gui.machine.GuiElectricCrusher;
+import nc.client.gui.machine.GuiElectricCrusher;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.ItemStack;
 import codechicken.nei.PositionedStack;

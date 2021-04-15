@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import nc.crafting.machine.FissionRecipes;
-import nc.gui.generator.GuiFissionReactor;
+import nc.client.gui.generator.GuiFissionReactor;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.ItemStack;
 import codechicken.nei.PositionedStack;

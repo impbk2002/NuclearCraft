@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import nc.crafting.machine.AssemblerRecipes;
-import nc.gui.machine.GuiAssembler;
+import nc.client.gui.machine.GuiAssembler;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.ItemStack;
 import codechicken.nei.PositionedStack;

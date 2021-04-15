@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import nc.crafting.machine.HastenerRecipes;
-import nc.gui.machine.GuiHastener;
+import nc.client.gui.machine.GuiHastener;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.ItemStack;
 import codechicken.nei.PositionedStack;

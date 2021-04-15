@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import nc.crafting.machine.FusionRecipes;
-import nc.gui.generator.GuiFusionReactorSteam;
+import nc.client.gui.generator.GuiFusionReactorSteam;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.ItemStack;
 import codechicken.nei.PositionedStack;

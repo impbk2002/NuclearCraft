@@ -10,7 +10,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import nc.Config;
-import nc.gui.machine.GuiFurnace;
+import nc.client.gui.machine.GuiFurnace;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.gui.inventory.GuiContainer;
