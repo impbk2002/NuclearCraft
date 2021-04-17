@@ -21,8 +21,8 @@ public class RecipesHelp {
 
 	public static void addCentrifugeRecipe(IRecipeInput input, int minHeat, ItemStack... output) {
 		NBTTagCompound metadata = new NBTTagCompound();
-	metadata.setInteger("minHeat", minHeat);
-	Recipes.centrifuge.addRecipe(input, metadata, output);
+		metadata.setInteger("minHeat", minHeat);
+		Recipes.centrifuge.addRecipe(input, metadata, output);
 	}
 	
 	public static void addBottleRecipe(ItemStack container, int conamount, ItemStack fill, int fillamount, ItemStack output) {

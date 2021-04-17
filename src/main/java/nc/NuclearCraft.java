@@ -20,7 +20,6 @@ import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.*;
 import net.minecraft.item.*;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.*;
@@ -32,6 +31,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.*;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
+import nc.common.compat.NCHelper;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, acceptedMinecraftVersions = Reference.MINECRAFT_VERSION, version = Reference.VERSION)
 
@@ -281,135 +281,34 @@ public class NuclearCraft {
 
 	private void modCompat() {
 		// Inter Mod Comms - Mekanism
-		NBTTagCompound copperOreEnrichment = new NBTTagCompound();
-		copperOreEnrichment.setTag("input", new ItemStack(NCBlocks.blockOre, 1, 0).writeToNBT(new NBTTagCompound()));
-		copperOreEnrichment.setTag("output", new ItemStack(NCItems.material, 2, 15).writeToNBT(new NBTTagCompound()));
-		FMLInterModComms.sendMessage("Mekanism", "EnrichmentChamberRecipe", copperOreEnrichment);
-		
-		NBTTagCompound tinOreEnrichment = new NBTTagCompound();
-		tinOreEnrichment.setTag("input", new ItemStack(NCBlocks.blockOre, 1, 1).writeToNBT(new NBTTagCompound()));
-		tinOreEnrichment.setTag("output", new ItemStack(NCItems.material, 2, 16).writeToNBT(new NBTTagCompound()));
-		FMLInterModComms.sendMessage("Mekanism", "EnrichmentChamberRecipe", tinOreEnrichment);
-		
-		NBTTagCompound leadOreEnrichment = new NBTTagCompound();
-		leadOreEnrichment.setTag("input", new ItemStack(NCBlocks.blockOre, 1, 2).writeToNBT(new NBTTagCompound()));
-		leadOreEnrichment.setTag("output", new ItemStack(NCItems.material, 2, 17).writeToNBT(new NBTTagCompound()));
-		FMLInterModComms.sendMessage("Mekanism", "EnrichmentChamberRecipe", leadOreEnrichment);
-		
-		NBTTagCompound silverOreEnrichment = new NBTTagCompound();
-		silverOreEnrichment.setTag("input", new ItemStack(NCBlocks.blockOre, 1, 3).writeToNBT(new NBTTagCompound()));
-		silverOreEnrichment.setTag("output", new ItemStack(NCItems.material, 2, 18).writeToNBT(new NBTTagCompound()));
-		FMLInterModComms.sendMessage("Mekanism", "EnrichmentChamberRecipe", silverOreEnrichment);
-		
-		NBTTagCompound uraniumOreEnrichment = new NBTTagCompound();
-		uraniumOreEnrichment.setTag("input", new ItemStack(NCBlocks.blockOre, 1, 4).writeToNBT(new NBTTagCompound()));
-		uraniumOreEnrichment.setTag("output", new ItemStack(NCItems.material, 2, 19).writeToNBT(new NBTTagCompound()));
-		FMLInterModComms.sendMessage("Mekanism", "EnrichmentChamberRecipe", uraniumOreEnrichment);
-		
-		NBTTagCompound thoriumOreEnrichment = new NBTTagCompound();
-		thoriumOreEnrichment.setTag("input", new ItemStack(NCBlocks.blockOre, 1, 5).writeToNBT(new NBTTagCompound()));
-		thoriumOreEnrichment.setTag("output", new ItemStack(NCItems.material, 2, 20).writeToNBT(new NBTTagCompound()));
-		FMLInterModComms.sendMessage("Mekanism", "EnrichmentChamberRecipe", thoriumOreEnrichment);
-		
-		NBTTagCompound plutoniumOreEnrichment = new NBTTagCompound();
-		plutoniumOreEnrichment.setTag("input", new ItemStack(NCBlocks.blockOre, 1, 6).writeToNBT(new NBTTagCompound()));
-		plutoniumOreEnrichment.setTag("output", new ItemStack(NCItems.material, 2, 33).writeToNBT(new NBTTagCompound()));
-		FMLInterModComms.sendMessage("Mekanism", "EnrichmentChamberRecipe", plutoniumOreEnrichment);
-		
-		NBTTagCompound lithiumOreEnrichment = new NBTTagCompound();
-		lithiumOreEnrichment.setTag("input", new ItemStack(NCBlocks.blockOre, 1, 7).writeToNBT(new NBTTagCompound()));
-		lithiumOreEnrichment.setTag("output", new ItemStack(NCItems.material, 2, 44).writeToNBT(new NBTTagCompound()));
-		FMLInterModComms.sendMessage("Mekanism", "EnrichmentChamberRecipe", lithiumOreEnrichment);
-		
-		NBTTagCompound boronOreEnrichment = new NBTTagCompound();
-		boronOreEnrichment.setTag("input", new ItemStack(NCBlocks.blockOre, 1, 8).writeToNBT(new NBTTagCompound()));
-		boronOreEnrichment.setTag("output", new ItemStack(NCItems.material, 2, 45).writeToNBT(new NBTTagCompound()));
-		FMLInterModComms.sendMessage("Mekanism", "EnrichmentChamberRecipe", boronOreEnrichment);
-		
-		NBTTagCompound magnesiumOreEnrichment = new NBTTagCompound();
-		magnesiumOreEnrichment.setTag("input", new ItemStack(NCBlocks.blockOre, 1, 9).writeToNBT(new NBTTagCompound()));
-		magnesiumOreEnrichment.setTag("output", new ItemStack(NCItems.material, 2, 51).writeToNBT(new NBTTagCompound()));
-		FMLInterModComms.sendMessage("Mekanism", "EnrichmentChamberRecipe", magnesiumOreEnrichment);
-		
-		NBTTagCompound basicPlatingEnrichment = new NBTTagCompound();
-		basicPlatingEnrichment.setTag("input", new ItemStack(NCItems.parts, Config.workspace ? 4 : 8, 0).writeToNBT(new NBTTagCompound()));
-		basicPlatingEnrichment.setTag("output", new ItemStack(NCItems.parts, 1, 3).writeToNBT(new NBTTagCompound()));
-		FMLInterModComms.sendMessage("Mekanism", "EnrichmentChamberRecipe", basicPlatingEnrichment);
-		
-		NBTTagCompound ingotToPlatingEnrichment = new NBTTagCompound();
-		ingotToPlatingEnrichment.setTag("input", new ItemStack(NCItems.material, 1, 7).writeToNBT(new NBTTagCompound()));
-		ingotToPlatingEnrichment.setTag("output", new ItemStack(NCItems.parts, 2, 0).writeToNBT(new NBTTagCompound()));
-		FMLInterModComms.sendMessage("Mekanism", "EnrichmentChamberRecipe", ingotToPlatingEnrichment);
-		
-		NBTTagCompound uraniumIngotCrushing = new NBTTagCompound();
-		uraniumIngotCrushing.setTag("input", new ItemStack(NCItems.material, 1, 4).writeToNBT(new NBTTagCompound()));
-		uraniumIngotCrushing.setTag("output", new ItemStack(NCItems.material, 1, 19).writeToNBT(new NBTTagCompound()));
-		FMLInterModComms.sendMessage("Mekanism", "CrusherRecipe", uraniumIngotCrushing);
-		
-		NBTTagCompound thoriumIngotCrushing = new NBTTagCompound();
-		thoriumIngotCrushing.setTag("input", new ItemStack(NCItems.material, 1, 5).writeToNBT(new NBTTagCompound()));
-		thoriumIngotCrushing.setTag("output", new ItemStack(NCItems.material, 1, 20).writeToNBT(new NBTTagCompound()));
-		FMLInterModComms.sendMessage("Mekanism", "CrusherRecipe", thoriumIngotCrushing);
-		
-		NBTTagCompound uraniumIngotOxideCrushing = new NBTTagCompound();
-		uraniumIngotOxideCrushing.setTag("input", new ItemStack(NCItems.material, 1, 53).writeToNBT(new NBTTagCompound()));
-		uraniumIngotOxideCrushing.setTag("output", new ItemStack(NCItems.material, 1, 54).writeToNBT(new NBTTagCompound()));
-		FMLInterModComms.sendMessage("Mekanism", "CrusherRecipe", uraniumIngotOxideCrushing);
-		
-		NBTTagCompound thoriumIngotOxideCrushing = new NBTTagCompound();
-		thoriumIngotOxideCrushing.setTag("input", new ItemStack(NCItems.material, 1, 126).writeToNBT(new NBTTagCompound()));
-		thoriumIngotOxideCrushing.setTag("output", new ItemStack(NCItems.material, 1, 127).writeToNBT(new NBTTagCompound()));
-		FMLInterModComms.sendMessage("Mekanism", "CrusherRecipe", thoriumIngotOxideCrushing);
-		
-		NBTTagCompound bronzeIngotCrushing = new NBTTagCompound();
-		bronzeIngotCrushing.setTag("input", new ItemStack(NCItems.material, 1, 6).writeToNBT(new NBTTagCompound()));
-		bronzeIngotCrushing.setTag("output", new ItemStack(NCItems.material, 1, 21).writeToNBT(new NBTTagCompound()));
-		FMLInterModComms.sendMessage("Mekanism", "CrusherRecipe", bronzeIngotCrushing);
-		
-		NBTTagCompound toughIngotCrushing = new NBTTagCompound();
-		toughIngotCrushing.setTag("input", new ItemStack(NCItems.material, 1, 7).writeToNBT(new NBTTagCompound()));
-		toughIngotCrushing.setTag("output", new ItemStack(NCItems.material, 1, 22).writeToNBT(new NBTTagCompound()));
-		FMLInterModComms.sendMessage("Mekanism", "CrusherRecipe", toughIngotCrushing);
-		
-		NBTTagCompound lithiumIngotCrushing = new NBTTagCompound();
-		lithiumIngotCrushing.setTag("input", new ItemStack(NCItems.material, 1, 42).writeToNBT(new NBTTagCompound()));
-		lithiumIngotCrushing.setTag("output", new ItemStack(NCItems.material, 1, 44).writeToNBT(new NBTTagCompound()));
-		FMLInterModComms.sendMessage("Mekanism", "CrusherRecipe", lithiumIngotCrushing);
-		
-		NBTTagCompound boronIngotCrushing = new NBTTagCompound();
-		boronIngotCrushing.setTag("input", new ItemStack(NCItems.material, 1, 43).writeToNBT(new NBTTagCompound()));
-		boronIngotCrushing.setTag("output", new ItemStack(NCItems.material, 1, 45).writeToNBT(new NBTTagCompound()));
-		FMLInterModComms.sendMessage("Mekanism", "CrusherRecipe", boronIngotCrushing);
-		
-		NBTTagCompound magnesiumIngotCrushing = new NBTTagCompound();
-		magnesiumIngotCrushing.setTag("input", new ItemStack(NCItems.material, 1, 50).writeToNBT(new NBTTagCompound()));
-		magnesiumIngotCrushing.setTag("output", new ItemStack(NCItems.material, 1, 51).writeToNBT(new NBTTagCompound()));
-		FMLInterModComms.sendMessage("Mekanism", "CrusherRecipe", magnesiumIngotCrushing);
-		
-		NBTTagCompound mgbIngotCrushing = new NBTTagCompound();
-		mgbIngotCrushing.setTag("input", new ItemStack(NCItems.material, 1, 71).writeToNBT(new NBTTagCompound()));
-		mgbIngotCrushing.setTag("output", new ItemStack(NCItems.material, 1, 72).writeToNBT(new NBTTagCompound()));
-		FMLInterModComms.sendMessage("Mekanism", "CrusherRecipe", mgbIngotCrushing);
-		
-		NBTTagCompound rCrushing = new NBTTagCompound();
-		rCrushing.setTag("input", new ItemStack(NCItems.material, 1, 73).writeToNBT(new NBTTagCompound()));
-		rCrushing.setTag("output", new ItemStack(NCItems.material, 1, 74).writeToNBT(new NBTTagCompound()));
-		FMLInterModComms.sendMessage("Mekanism", "CrusherRecipe", rCrushing);
-		
-		NBTTagCompound graphiteIngotCrushing = new NBTTagCompound();
-		graphiteIngotCrushing.setTag("input", new ItemStack(NCItems.material, 1, 76).writeToNBT(new NBTTagCompound()));
-		graphiteIngotCrushing.setTag("output", new ItemStack(NCItems.material, 1, 77).writeToNBT(new NBTTagCompound()));
-		FMLInterModComms.sendMessage("Mekanism", "CrusherRecipe", graphiteIngotCrushing);
-		
-		NBTTagCompound hardCarbonIngotCrushing = new NBTTagCompound();
-		hardCarbonIngotCrushing.setTag("input", new ItemStack(NCItems.material, 1, 78).writeToNBT(new NBTTagCompound()));
-		hardCarbonIngotCrushing.setTag("output", new ItemStack(NCItems.material, 1, 79).writeToNBT(new NBTTagCompound()));
-		FMLInterModComms.sendMessage("Mekanism", "CrusherRecipe", hardCarbonIngotCrushing);
-		
-		NBTTagCompound LiMnO2IngotCrushing = new NBTTagCompound();
-		LiMnO2IngotCrushing.setTag("input", new ItemStack(NCItems.material, 1, 80).writeToNBT(new NBTTagCompound()));
-		LiMnO2IngotCrushing.setTag("output", new ItemStack(NCItems.material, 1, 81).writeToNBT(new NBTTagCompound()));
-		FMLInterModComms.sendMessage("Mekanism", "CrusherRecipe", LiMnO2IngotCrushing);
+		NCHelper.Mekanism.addEnrichmentRecipe(new ItemStack(NCBlocks.blockOre, 1, 0), new ItemStack(NCItems.material, 2, 15));	//copperOreEnrichment
+		NCHelper.Mekanism.addEnrichmentRecipe(new ItemStack(NCBlocks.blockOre, 1, 1), new ItemStack(NCItems.material, 2, 16));	//tinOreEnrichment
+		NCHelper.Mekanism.addEnrichmentRecipe(new ItemStack(NCBlocks.blockOre, 1, 2), new ItemStack(NCItems.material, 2, 17));	//leadOreEnrichment
+		NCHelper.Mekanism.addEnrichmentRecipe(new ItemStack(NCBlocks.blockOre, 1, 3), new ItemStack(NCItems.material, 2, 18));	//silverOreEnrichment
+		NCHelper.Mekanism.addEnrichmentRecipe(new ItemStack(NCBlocks.blockOre, 1, 4), new ItemStack(NCItems.material, 2, 19));	//uraniumOreEnrichment
+		NCHelper.Mekanism.addEnrichmentRecipe(new ItemStack(NCBlocks.blockOre, 1, 5), new ItemStack(NCItems.material, 2, 20));	//thoriumOreEnrichment
+		NCHelper.Mekanism.addEnrichmentRecipe(new ItemStack(NCBlocks.blockOre, 1, 6), new ItemStack(NCItems.material, 2, 33));	//plutoniumOreEnrichment
+		NCHelper.Mekanism.addEnrichmentRecipe(new ItemStack(NCBlocks.blockOre, 1, 7), new ItemStack(NCItems.material, 2, 44));	//lithiumOreEnrichment
+		NCHelper.Mekanism.addEnrichmentRecipe(new ItemStack(NCBlocks.blockOre, 1, 8), new ItemStack(NCItems.material, 2, 45));	//boronOreEnrichment
+		NCHelper.Mekanism.addEnrichmentRecipe(new ItemStack(NCBlocks.blockOre, 1, 9), new ItemStack(NCItems.material, 2, 51));	//magnesiumOreEnrichment
+		NCHelper.Mekanism.addEnrichmentRecipe(new ItemStack(NCItems.parts, Config.workspace ? 4 : 8, 0), new ItemStack(NCItems.parts, 1, 3));	//basicPlatingEnrichment
+		NCHelper.Mekanism.addEnrichmentRecipe(new ItemStack(NCItems.material, 1, 7), new ItemStack(NCItems.parts, 2, 0));	//ingotToPlatingEnrichment
+		NCHelper.Mekanism.addCrusherRecipe(new ItemStack(NCItems.material, 1, 4), new ItemStack(NCItems.material, 1, 19));	//uraniumIngotCrushing
+		NCHelper.Mekanism.addCrusherRecipe(new ItemStack(NCItems.material, 1, 5), new ItemStack(NCItems.material, 1, 20));	//thoriumIngotCrushing
+		NCHelper.Mekanism.addCrusherRecipe(new ItemStack(NCItems.material, 1, 53), new ItemStack(NCItems.material, 1, 54));	//uraniumIngotOxideCrushing
+		NCHelper.Mekanism.addCrusherRecipe(new ItemStack(NCItems.material, 1, 126), new ItemStack(NCItems.material, 1, 127));	//thoriumIngotOxideCrushing
+		NCHelper.Mekanism.addCrusherRecipe(new ItemStack(NCItems.material, 1, 6), new ItemStack(NCItems.material, 1, 21));	//bronzeIngotCrushing
+		NCHelper.Mekanism.addCrusherRecipe(new ItemStack(NCItems.material, 1, 7), new ItemStack(NCItems.material, 1, 22));	//toughIngotCrushing
+		NCHelper.Mekanism.addCrusherRecipe(new ItemStack(NCItems.material, 1, 42), new ItemStack(NCItems.material, 1, 44));	//lithiumIngotCrushing
+		NCHelper.Mekanism.addCrusherRecipe(new ItemStack(NCItems.material, 1, 43), new ItemStack(NCItems.material, 1, 45));	//boronIngotCrushing
+		NCHelper.Mekanism.addCrusherRecipe(new ItemStack(NCItems.material, 1, 50), new ItemStack(NCItems.material, 1, 51));	//magnesiumIngotCrushing
+		NCHelper.Mekanism.addCrusherRecipe(new ItemStack(NCItems.material, 1, 71), new ItemStack(NCItems.material, 1, 72));	//mgbIngotCrushing
+		NCHelper.Mekanism.addCrusherRecipe(new ItemStack(NCItems.material, 1, 73), new ItemStack(NCItems.material, 1, 74));	//rCrushing
+		NCHelper.Mekanism.addCrusherRecipe(new ItemStack(NCItems.material, 1, 76), new ItemStack(NCItems.material, 1, 77));	//graphiteIngotCrushing
+		NCHelper.Mekanism.addCrusherRecipe(new ItemStack(NCItems.material, 1, 78), new ItemStack(NCItems.material, 1, 79));	//hardCarbonIngotCrushing
+		NCHelper.Mekanism.addCrusherRecipe(new ItemStack(NCItems.material, 1, 80), new ItemStack(NCItems.material, 1, 81));	//LiMnO2IngotCrushing
+
+
 		
 		/*NBTTagCompound oxygenFilling = new NBTTagCompound();
 		oxygenFilling.setTag("input", new ItemStack(NCItems.fuel, 1, 45).writeToNBT(new NBTTagCompound()));

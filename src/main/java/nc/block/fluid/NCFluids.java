@@ -26,7 +26,6 @@ public class NCFluids {
 	public static void postInitalize() {}
 	
 	public static void registerFluid(Fluid fluid, String fluidName) {
-
 		if (!FluidRegistry.isFluidRegistered(fluidName)) {
 			FluidRegistry.registerFluid(fluid);
 		}
