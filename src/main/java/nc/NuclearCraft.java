@@ -23,12 +23,16 @@ import net.minecraft.item.*;
 import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.*;
+
+import org.apache.logging.log4j.*;
+
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.*;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
 import nc.common.compat.NCHelper;
@@ -36,7 +40,7 @@ import nc.common.compat.NCHelper;
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, acceptedMinecraftVersions = Reference.MINECRAFT_VERSION, version = Reference.VERSION)
 
 public class NuclearCraft {
-	
+	public static final Logger logger = LogManager.getLogger(Reference.MOD_ID);
 	public static final CreativeTabs tabNC = new CreativeTabs("tabNC") {
 		// Creative Tab Shown Item
 		public Item getTabIconItem() {
@@ -193,7 +197,7 @@ public class NuclearCraft {
 	
 		// Item Registry
 		NCItems.preInitalize();
-		
+		NetworkRegistry.INSTANCE.registerGuiHandler(instance, NCProxy);
 		// Proxy
 		NCProxy.preInitalize();
 		

@@ -1,9 +1,16 @@
 package nc.tile.generator;
 
+import static nc.block.NCBlocks.cellBlock;
+import static nc.block.NCBlocks.graphiteBlock;
+import static nc.block.NCBlocks.speedBlock;
+
 import nc.Config;
 import nc.block.NCBlocks;
 import nc.block.fluid.NCFluids;
+import nc.block.generator.BlockFissionReactor;
 import nc.block.generator.BlockFissionReactorSteam;
+import nc.block.reactor.BlockReactorBlock;
+import nc.block.reactor.BlockReactorGlass;
 import nc.handler.BombType;
 import nc.handler.EntityBomb;
 import nc.handler.NCExplosion;
@@ -12,6 +19,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.StatCollector;
+import net.minecraft.util.Vec3;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -187,15 +195,15 @@ public class TileFissionReactorSteam extends TileSteamProducer {
 	        	for (int z = z0 + 1; z <= z1 - 1; z++) {
 	        		for (int x = x0 + 1; x <= x1 - 1; x++) {
 	        			for (int y = y0 + 1; y <= y1 - 1; y++) {
-	        				if (find(NCBlocks.cellBlock, x, y, z)) {
+							if (find(x, y, z, NCBlocks.cellBlock)) {
 	        					extraCells = 0;
-	        					if (find(NCBlocks.cellBlock, x + 1, y, z) || (find(NCBlocks.graphiteBlock, x + 1, y, z) && find(NCBlocks.cellBlock, x + 2, y, z))) extraCells += 1;
-								if (find(NCBlocks.cellBlock, x - 1, y, z) || (find(NCBlocks.graphiteBlock, x - 1, y, z) && find(NCBlocks.cellBlock, x - 2, y, z))) extraCells += 1;
-								if (find(NCBlocks.cellBlock, x, y + 1, z) || (find(NCBlocks.graphiteBlock, x, y + 1, z) && find(NCBlocks.cellBlock, x, y + 2, z))) extraCells += 1;
-								if (find(NCBlocks.cellBlock, x, y - 1, z) || (find(NCBlocks.graphiteBlock, x, y - 1, z) && find(NCBlocks.cellBlock, x, y - 2, z))) extraCells += 1;
-								if (find(NCBlocks.cellBlock, x, y, z + 1) || (find(NCBlocks.graphiteBlock, x, y, z + 1) && find(NCBlocks.cellBlock, x, y, z + 2))) extraCells += 1;
-								if (find(NCBlocks.cellBlock, x, y, z - 1) || (find(NCBlocks.graphiteBlock, x, y, z - 1) && find(NCBlocks.cellBlock, x, y, z - 2))) extraCells += 1;
-	        					
+								if (find(x + 1, y, z, NCBlocks.cellBlock) || (find(x + 1, y, z, graphiteBlock) && find(x + 2, y, z, cellBlock))) extraCells += 1;
+								if (find(x - 1, y, z, NCBlocks.cellBlock) || (find(x - 1, y, z, graphiteBlock) && find(x - 2, y, z, cellBlock))) extraCells += 1;
+								if (find(x, y + 1, z, NCBlocks.cellBlock) || (find(x, y + 1, z, graphiteBlock) && find(x, y + 2, z, cellBlock))) extraCells += 1;
+								if (find(x, y - 1, z, NCBlocks.cellBlock) || (find(x, y - 1, z, graphiteBlock) && find(x, y - 2, z, cellBlock))) extraCells += 1;
+								if (find(x, y, z + 1, NCBlocks.cellBlock) || (find(x, y, z + 1, graphiteBlock) && find(x, y, z + 2, cellBlock))) extraCells += 1;
+								if (find(x, y, z - 1, NCBlocks.cellBlock) || (find(x, y, z - 1, graphiteBlock) && find(x, y, z - 2, cellBlock))) extraCells += 1;
+								
 	        					if (extraCells == 0) numberOfCells += 1;
 	        					else if (extraCells == 1) adj1 += 1;
 	        					else if (extraCells == 2) adj2 += 1;
@@ -382,11 +390,11 @@ public class TileFissionReactorSteam extends TileSteamProducer {
 	        	for (int z = z0 + 1; z <= z1 - 1; z++) {
 	        		for (int x = x0 + 1; x <= x1 - 1; x++) {
 	        			for (int y = y0 + 1; y <= y1 - 1; y++) {
-	        				if(find(NCBlocks.graphiteBlock, x, y, z)) {
+							if(find(x, y, z, graphiteBlock)) {
 		        				heatThisTick += (hMult/100)*baseSteam*(numberOfCells + adj1 + adj2 + adj3 + adj4 + adj5 + adj6)/5;
 		        				if (surroundOr(NCBlocks.cellBlock, x, y, z)) steamThisTick += (10000*sMult + heat)*baseSteam*(numberOfCells + adj1 + adj2 + adj3 + adj4 + adj5 + adj6)/10000000;
 	        				}
-	        				if(find(NCBlocks.speedBlock, x, y, z) && (numberOfCells + adj1 + adj2 + adj3 + adj4 + adj5 + adj6) > 0) {
+							if(find(x, y, z, speedBlock) && (numberOfCells + adj1 + adj2 + adj3 + adj4 + adj5 + adj6) > 0) {
 	        					if (lx - 2 + ly - 2 + lz - 2 > 0) fuelThisTick += (numberOfCells + adj1 + adj2 + adj3 + adj4 + adj5 + adj6)*baseFuel/(Config.fissionEfficiency*(lx - 2 + ly - 2 + lz - 2));
 	        				}
 	        			}
@@ -541,7 +549,7 @@ public class TileFissionReactorSteam extends TileSteamProducer {
 	    		for (int z = z0 + 1; z <= z1 - 1; z++) {
 	        		for (int x = x0 + 1; x <= x1 - 1; x++) {
 	        			for (int y = y0 + 1; y <= y1 - 1; y++) {
-	        				if (find(NCBlocks.graphiteBlock, x, y, z)) {
+	        				if (find(x, y, z, NCBlocks.graphiteBlock)) {
 		        				fakeHeatThisTick += (hMult/100)*baseSteam*(numberOfCells + adj1 + adj2 + adj3 + adj4 + adj5 + adj6)/5;
 		        				if (surroundOr(NCBlocks.cellBlock, x, y, z)) fakeSteamThisTick += (10000*sMult + heat)*baseSteam*(numberOfCells + adj1 + adj2 + adj3 + adj4 + adj5 + adj6)/10000000;
 	        				}
@@ -558,38 +566,38 @@ public class TileFissionReactorSteam extends TileSteamProducer {
 	        	for (int z = z0 + 1; z <= z1 - 1; z++) {
 	        		for (int x = x0 + 1; x <= x1 - 1; x++) {
 	        			for (int y = y0 + 1; y <= y1 - 1; y++) {
-	        				if(find(NCBlocks.coolerBlock, x, y, z)) {
-	        					coolerHeatThisTick -= Config.standardCool;
-	        					if (surroundOr(NCBlocks.coolerBlock, x, y, z)) coolerHeatThisTick -= Config.standardCool;
-	        				}
-	        				if(find(NCBlocks.waterCoolerBlock, x, y, z)) {
-	        					coolerHeatThisTick -= Config.waterCool;
-	        					if (surroundOr(NCBlocks.reactorBlock, x, y, z)) coolerHeatThisTick -= Config.waterCool;
-	        				}
-	        				if(find(NCBlocks.cryotheumCoolerBlock, x, y, z)) {
-	        					coolerHeatThisTick -= Config.cryotheumCool;
-	        					if (surroundNAnd(NCBlocks.cryotheumCoolerBlock, x, y, z)) coolerHeatThisTick -= Config.cryotheumCool;
-	        				}
-	        				if(find(NCBlocks.redstoneCoolerBlock, x, y, z)) {
-	        					coolerHeatThisTick -= Config.redstoneCool;
-	        					if (surroundOr(NCBlocks.cellBlock, x, y, z)) coolerHeatThisTick -= Config.redstoneCool;
-	        				}
-	        				if(find(NCBlocks.enderiumCoolerBlock, x, y, z)) {
-	        					coolerHeatThisTick -= Config.enderiumCool;
-	        					if (surroundOr(NCBlocks.graphiteBlock, x, y, z)) coolerHeatThisTick -= Config.enderiumCool;
-	        				}
-	        				if(find(NCBlocks.glowstoneCoolerBlock, x, y, z)) {
-	        					coolerHeatThisTick -= Config.glowstoneCool;
-	        					if (surroundAnd(NCBlocks.graphiteBlock, x, y, z)) coolerHeatThisTick -= 3*Config.glowstoneCool;
-	        				}
-	        				if(find(NCBlocks.heliumCoolerBlock, x, y, z)) {
-	        					coolerHeatThisTick -= Config.heliumCool;
-	        				}
-	        				if(find(NCBlocks.coolantCoolerBlock, x, y, z)) {
-	        					coolerHeatThisTick -= Config.coolantCool;
-	        					if (surroundOr(NCBlocks.waterCoolerBlock, x, y, z)) coolerHeatThisTick -= Config.coolantCool;
-	        				}
-	        				if(find(Blocks.water, x, y, z)) coolerHeatThisTick -= 1;
+							if(find(x, y, z, NCBlocks.coolerBlock)) {
+								coolerHeatThisTick -= Config.standardCool;
+								if (surroundOr(NCBlocks.coolerBlock, x, y, z)) coolerHeatThisTick -= Config.standardCool;
+							}
+							if(find(x, y, z, NCBlocks.waterCoolerBlock)) {
+								coolerHeatThisTick -= Config.waterCool;
+								if (surroundOr(NCBlocks.reactorBlock, x, y, z)) coolerHeatThisTick -= Config.waterCool;
+							}
+							if(find(x, y, z, NCBlocks.cryotheumCoolerBlock)) {
+								coolerHeatThisTick -= Config.cryotheumCool;
+								if (surroundNAnd(NCBlocks.cryotheumCoolerBlock, x, y, z)) coolerHeatThisTick -= Config.cryotheumCool;
+							}
+							if(find(x, y, z, NCBlocks.redstoneCoolerBlock)) {
+								coolerHeatThisTick -= Config.redstoneCool;
+								if (surroundOr(NCBlocks.cellBlock, x, y, z)) coolerHeatThisTick -= Config.redstoneCool;
+							}
+							if(find(x, y, z, NCBlocks.enderiumCoolerBlock)) {
+								coolerHeatThisTick -= Config.enderiumCool;
+								if (surroundOr(NCBlocks.graphiteBlock, x, y, z)) coolerHeatThisTick -= Config.enderiumCool;
+							}
+							if(find(x, y, z, NCBlocks.glowstoneCoolerBlock)) {
+								coolerHeatThisTick -= Config.glowstoneCool;
+								if (surroundAnd(NCBlocks.graphiteBlock, x, y, z)) coolerHeatThisTick -= 3*Config.glowstoneCool;
+							}
+							if(find(x, y, z, NCBlocks.heliumCoolerBlock)) {
+								coolerHeatThisTick -= Config.heliumCool;
+							}
+							if(find(x, y, z, NCBlocks.coolantCoolerBlock)) {
+								coolerHeatThisTick -= Config.coolantCool;
+								if (surroundOr(NCBlocks.waterCoolerBlock, x, y, z)) coolerHeatThisTick -= Config.coolantCool;
+							}
+							if(find(x, y, z, Blocks.water)) coolerHeatThisTick -= 1;
 	        			}
 	        		}
 	        	}
@@ -660,7 +668,7 @@ public class TileFissionReactorSteam extends TileSteamProducer {
 	}
     
     public boolean findBasic(Block block, int x, int y, int z) {
-    	return find(block, x, y, z);
+    	return find(x, y, z, block);
     }
     
     public boolean nextToZMinus(Block block, int x, int y, int z) {
@@ -846,206 +854,225 @@ public class TileFissionReactorSteam extends TileSteamProducer {
         return slot == 1;
     }
     
-    private boolean find(Block block, int x, int y, int z) {
-    	int xc = xCoord;
-    	int yc = yCoord + y;
-    	int zc = zCoord;
-    	
-    	if (getBlockMetadata() == 4) return (worldObj.getBlock(xc+x, yc, zc+z) == block);
-    	else if (getBlockMetadata() == 2) return (worldObj.getBlock(xc-z, yc, zc+x) == block);
-    	else if (getBlockMetadata() == 5) return (worldObj.getBlock(xc-x, yc, zc-z) == block);
-    	else if (getBlockMetadata() == 3) return (worldObj.getBlock(xc+z, yc, zc-x) == block);
-    	else return false;
-    }
-    
-    private boolean find(Block block, Block block2, Block block3, Block block4, int x, int y, int z) {
-    	int xc = xCoord;
-    	int yc = yCoord + y;
-    	int zc = zCoord;
-    	
-    	if (getBlockMetadata() == 4) return (worldObj.getBlock(xc+x, yc, zc+z) == block || worldObj.getBlock(xc+x, yc, zc+z) == block2 || worldObj.getBlock(xc+x, yc, zc+z) == block3 || worldObj.getBlock(xc+x, yc, zc+z) == block4);
-    	else if (getBlockMetadata() == 2) return (worldObj.getBlock(xc-z, yc, zc+x) == block || worldObj.getBlock(xc-z, yc, zc+x) == block2 || worldObj.getBlock(xc-z, yc, zc+x) == block3 || worldObj.getBlock(xc-z, yc, zc+x) == block4);
-    	else if (getBlockMetadata() == 5) return (worldObj.getBlock(xc-x, yc, zc-z) == block || worldObj.getBlock(xc-x, yc, zc-z) == block2 || worldObj.getBlock(xc-x, yc, zc-z) == block3 || worldObj.getBlock(xc-x, yc, zc-z) == block4);
-    	else if (getBlockMetadata() == 3) return (worldObj.getBlock(xc+z, yc, zc-x) == block || worldObj.getBlock(xc+z, yc, zc-x) == block2 || worldObj.getBlock(xc+z, yc, zc-x) == block3 || worldObj.getBlock(xc+z, yc, zc-x) == block4);
-    	else return false;
-    }
-    
-    private boolean find(Block block, Block block2, Block block3, Block block4, Block block5, int x, int y, int z) {
-    	int xc = xCoord;
-    	int yc = yCoord + y;
-    	int zc = zCoord;
-    	
-    	if (getBlockMetadata() == 4) return (worldObj.getBlock(xc+x, yc, zc+z) == block || worldObj.getBlock(xc+x, yc, zc+z) == block2 || worldObj.getBlock(xc+x, yc, zc+z) == block3 || worldObj.getBlock(xc+x, yc, zc+z) == block4 || worldObj.getBlock(xc+x, yc, zc+z) == block5);
-    	else if (getBlockMetadata() == 2) return (worldObj.getBlock(xc-z, yc, zc+x) == block || worldObj.getBlock(xc-z, yc, zc+x) == block2 || worldObj.getBlock(xc-z, yc, zc+x) == block3 || worldObj.getBlock(xc-z, yc, zc+x) == block4 || worldObj.getBlock(xc-z, yc, zc+x) == block5);
-    	else if (getBlockMetadata() == 5) return (worldObj.getBlock(xc-x, yc, zc-z) == block || worldObj.getBlock(xc-x, yc, zc-z) == block2 || worldObj.getBlock(xc-x, yc, zc-z) == block3 || worldObj.getBlock(xc-x, yc, zc-z) == block4 || worldObj.getBlock(xc-x, yc, zc-z) == block5);
-    	else if (getBlockMetadata() == 3) return (worldObj.getBlock(xc+z, yc, zc-x) == block || worldObj.getBlock(xc+z, yc, zc-x) == block2 || worldObj.getBlock(xc+z, yc, zc-x) == block3 || worldObj.getBlock(xc+z, yc, zc-x) == block4 || worldObj.getBlock(xc+z, yc, zc-x) == block5);
-    	else return false;
-    }
-    
-    private boolean checkStructure() {
-    	if (tickCount >= Config.fissionUpdateRate) {
-	    	int l = Config.fissionMaxLength + 2;
-	    	Block b = NCBlocks.reactorBlock;
-	    	Block r = NCBlocks.fissionReactorGraphiteIdle;
-	    	Block rr = NCBlocks.fissionReactorGraphiteActive;
-	    	Block rs = NCBlocks.fissionReactorSteamIdle;
-	    	Block rrs = NCBlocks.fissionReactorSteamActive;
-	    	boolean f = false;
-	    	int rz = 0;
-	    	int z0 = 0;
-	    	int x0 = 0;
-	    	int y0 = 0;
-	    	int z1 = 0;
-	    	int x1 = 0;
-	    	int y1 = 0;
-	    	for (int z = 0; z <= l; z++) {
-	    		if ((find(b, 0, 1, 0) || find(b, 0, -1, 0)) || ((find(b, 1, 1, 0) || find(b, 1, -1, 0)) && find(b, 1, 0, 0)) || ((find(b, 1, 1, 0) && !find(b, 1, -1, 0)) && !find(b, 1, 0, 0)) || ((!find(b, 1, 1, 0) && find(b, 1, -1, 0)) && !find(b, 1, 0, 0))) {
-		    		if (/*!find(b, 0, 0, -z) &&*/ !find(b, 0, 1, -z) && !find(b, 0, -1, -z) && (find(b, r, rr, rs, rrs, 0, 0, -z + 1) || find(b, r, rr, rs, rrs, 0, 1, -z + 1) || find(b, r, rr, rs, rrs, 0, -1, -z + 1))) {
-		    			rz = l - z;
-		    			z0 = -z;
-		    			f = true;
-		    			break;
-		    		}
-	    		} else if (!find(b, 0, 0, -z) && !find(b, 1, 1, -z) && !find(b, 1, -1, -z) && find(b, r, rr, rs, rrs, 0, 0, -z + 1) && find(b, 1, 0, -z) && find(b, 1, 1, -z + 1) && find(b, 1, -1, -z + 1)) {
-	    			rz = l - z;
-	    			z0 = -z;
-	    			f = true;
-	    			break;
-	    		}
-	    	}
-	    	if (!f) {
-	    		complete = 0; problem = StatCollector.translateToLocal("gui.casingIncomplete"); return false;
-	    	}
-	    	f = false;
-	    	for (int y = 0; y <= l; y++) {
-	    		if (/*!find(b, x0, -y, z0) && */!find(b, x0, -y + 1, z0) && !find(b, x0 + 1, -y, z0) && !find(b, x0, -y, z0 + 1) && find(b, r, rr, rs, rrs, x0 + 1, -y, z0 + 1) && find(b, r, rr, rs, rrs, x0, -y + 1, z0 + 1) && find(b, r, rr, rs, rrs, x0 + 1, -y + 1, z0)) {
-	    			y0 = -y;
-	    			f = true;
-	    			break;
-	    		}
-	    	}
-	    	if (!f) {
-	    		complete = 0; problem = StatCollector.translateToLocal("gui.casingIncomplete"); return false;
-	    	}
-	    	f = false;
-	    	for (int z = 0; z <= rz; z++) {
-	    		if (/*!find(b, x0, y0, z) &&*/ !find(b, x0, y0 + 1, z) && !find(b, x0 + 1, y0, z) && !find(b, x0, y0, z - 1) && find(b, r, rr, rs, rrs, x0 + 1, y0, z - 1) && find(b, r, rr, rs, rrs, x0, y0 + 1, z - 1) && find(b, r, rr, rs, rrs, x0 + 1, y0 + 1, z)) {
-	    			z1 = z;
-	    			f = true;
-	    			break;
-	    		}
-	    	}
-	    	if (!f) {
-	    		complete = 0; problem = StatCollector.translateToLocal("gui.casingIncomplete"); return false;
-	    	}
-	    	f = false;
-	    	for (int x = 0; x <= l; x++) {
-	    		if (/*!find(b, x0 + x, y0, z0) &&*/ !find(b, x0 + x, y0 + 1, z0) && !find(b, x0 + x - 1, y0, z0) && !find(b, x0 + x, y0, z0 + 1) && find(b, r, rr, rs, rrs, x0 + x - 1, y0, z0 + 1) && find(b, r, rr, rs, rrs, x0 + x, y0 + 1, z0 + 1) && find(b, r, rr, rs, rrs, x0 + x - 1, y0 + 1, z0)) {
-	    			x1 = x0 + x;
-	    			f = true;
-	    			break;
-	    		}
-	    	}
-	    	if (!f) {
-	    		complete = 0; problem = StatCollector.translateToLocal("gui.casingIncomplete"); return false;
-	    	}
-	    	f = false;
-	    	for (int y = 0; y <= l; y++) {
-	    		if (/*!find(b, x0, y0 + y, z0) &&*/ !find(b, x0, y0 + y - 1, z0) && !find(b, x0 + 1, y0 + y, z0) && !find(b, x0, y0 + y, z0 + 1) && find(b, r, rr, rs, rrs, x0 + 1, y0 + y, z0 + 1) && find(b, r, rr, rs, rrs, x0, y0 + y - 1, z0 + 1) && find(b, r, rr, rs, rrs, x0 + 1, y0 + y - 1, z0)) {
-	    			y1 = y0 + y;
-	    			f = true;
-	    			break;
-	    		}
-	    	}
-	    	if (!f) {
-	    		complete = 0; problem = StatCollector.translateToLocal("gui.casingIncomplete"); return false;
-	    	}
-	    	f = false;
-	    	if ((x0 > 0 || x1 < 0) || (y0 > 0 || y1 < 0) || (z0 > 0 || z1 < 0) || x1 - x0 < 1 || y1 - y0 < 1 || z1 - z0 < 1) {
-	    		problem = StatCollector.translateToLocal("gui.invalidStructure");
-	    		complete = 0;
+	private boolean find(int x, int y, int z, Block... blocks) {
+		int meta = this.getBlockMetadata();
+		if(meta > 5 || meta <2 || blocks.length < 1) {
+			return false;
+		}
+		int xCheck = this.xCoord+((meta+1)%3==0?-1:1)*(meta < 4 ? z:x);
+		int yCheck = this.yCoord + y;
+		int zCheck = this.zCoord+(meta%2==0?1:-1)*(meta < 4 ? x:z);
+
+		for(int i = 0; i < blocks.length; i++) {
+			if(this.worldObj.getBlock(xCheck, yCheck, zCheck)==blocks[i]) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private boolean findCasingControllerPort(int x, int y, int z) {
+		int[] pos = {(int) position(x, y, z).xCoord, (int) position(x, y, z).yCoord, (int) position(x, y, z).zCoord};
+		if (this.worldObj.getBlock(pos[0], pos[1], pos[2]) instanceof BlockReactorBlock) return true;
+		if (this.worldObj.getBlock(pos[0], pos[1], pos[2]) instanceof BlockReactorGlass) return true;
+		if (this.worldObj.getBlock(pos[0], pos[1], pos[2]) instanceof BlockFissionReactor) return true;
+		if (this.worldObj.getBlock(pos[0], pos[1], pos[2]) instanceof BlockFissionReactorSteam) return true;
+		//if (worldObj.getBlockState(position(x, y, z)).getBlock() instanceof BlockBuffer) return true;
+		//if (worldObj.getBlockState(position(x, y, z)).getBlock() == NCBlocks.reactor_door) return true;
+		//if (worldObj.getBlockState(position(x, y, z)).getBlock() == NCBlocks.reactor_trapdoor) return true;
+		return false;
+	}
+	
+	private boolean findCasingPort(int x, int y, int z) {
+		int[] pos = {(int) position(x, y, z).xCoord, (int) position(x, y, z).yCoord, (int) position(x, y, z).zCoord};
+		if (this.worldObj.getBlock(pos[0], pos[1], pos[2]) instanceof BlockReactorBlock) return true;
+		if (this.worldObj.getBlock(pos[0], pos[1], pos[2]) instanceof BlockReactorGlass) return true;
+		//if (worldObj.getBlockState(position(x, y, z)).getBlock() instanceof BlockFissionPort) return true;
+		//if (worldObj.getBlockState(position(x, y, z)).getBlock() instanceof BlockBuffer) return true;
+		//if (worldObj.getBlockState(position(x, y, z)).getBlock() == NCBlocks.reactor_door) return true;
+		//if (worldObj.getBlockState(position(x, y, z)).getBlock() == NCBlocks.reactor_trapdoor) return true;
+		return false;
+	}
+	
+	private boolean findController(int x, int y, int z) {
+		int[] pos = {(int) position(x, y, z).xCoord, (int) position(x, y, z).yCoord, (int) position(x, y, z).zCoord};
+		if (this.worldObj.getBlock(pos[0], pos[1], pos[2]) instanceof BlockFissionReactor) return true;
+		if (this.worldObj.getBlock(pos[0], pos[1], pos[2]) instanceof BlockFissionReactorSteam) return true;
+		return false;
+	}
+	
+	private Vec3 position(int x, int y, int z) {
+		int xCheck = this.xCoord+((this.getBlockMetadata()+1)%3==0?-1:1)*(this.getBlockMetadata() < 4 ? z:x);
+		int yCheck = this.yCoord + y;
+		int zCheck = this.zCoord+(this.getBlockMetadata()%2==0?1:-1)*(this.getBlockMetadata() < 4 ? x:z);
+		if(this.getBlockMetadata() > 5 || this.getBlockMetadata() < 2) {
+			xCheck = this.xCoord+x;
+			zCheck = this.zCoord+z;
+		}
+		return Vec3.createVectorHelper(xCheck, yCheck, zCheck);
+	}
+	
+	private boolean checkStructure() {
+		if (tickCount >= Config.fissionUpdateRate) {
+			int l = Config.fissionMaxLength + 2;
+			boolean f = false;
+			int rz = 0;
+			int z0 = 0;
+			int x0 = 0;
+			int y0 = 0;
+			int z1 = 0;
+			int x1 = 0;
+			int y1 = 0;
+			for (int z = 0; z <= l; z++) {
+				if ((findCasingPort(0, 1, 0) || findCasingPort(0, -1, 0)) || ((findCasingPort(1, 1, 0) || findCasingPort(1, -1, 0)) && findCasingPort(1, 0, 0)) || ((findCasingPort(1, 1, 0) && !findCasingPort(1, -1, 0)) && !findCasingPort(1, 0, 0)) || ((!findCasingPort(1, 1, 0) && findCasingPort(1, -1, 0)) && !findCasingPort(1, 0, 0))) {
+					if (!findCasingPort(0, 1, -z) && !findCasingPort(0, -1, -z) && (findCasingControllerPort(0, 0, -z + 1) || findCasingControllerPort(0, 1, -z + 1) || findCasingControllerPort(0, -1, -z + 1))) {
+						rz = l - z;
+						z0 = -z;
+						f = true;
+						break;
+					}
+				} else if (!findCasingPort(0, 0, -z) && !findCasingPort(1, 1, -z) && !findCasingPort(1, -1, -z) && findCasingControllerPort(0, 0, -z + 1) && findCasingPort(1, 0, -z) && findCasingPort(1, 1, -z + 1) && findCasingPort(1, -1, -z + 1)) {
+					rz = l - z;
+					z0 = -z;
+					f = true;
+					break;
+				}
+			}
+			if (!f) {
+				complete = 0; problem = StatCollector.translateToLocal("gui.casingIncomplete"); return false;
+			}
+			f = false;
+			for (int y = 0; y <= l; y++) {
+				if (!findCasingPort(x0, -y + 1, z0) && !findCasingPort(x0 + 1, -y, z0) && !findCasingPort(x0, -y, z0 + 1) && findCasingControllerPort(x0 + 1, -y, z0 + 1) && findCasingControllerPort(x0, -y + 1, z0 + 1) && findCasingControllerPort(x0 + 1, -y + 1, z0)) {
+					y0 = -y;
+					f = true;
+					break;
+				}
+			}
+			if (!f) {
+				complete = 0; problem = StatCollector.translateToLocal("gui.casingIncomplete"); return false;
+			}
+			f = false;
+			for (int z = 0; z <= rz; z++) {
+				if (!findCasingPort(x0, y0 + 1, z) && !findCasingPort(x0 + 1, y0, z) && !findCasingPort(x0, y0, z - 1) && findCasingControllerPort(x0 + 1, y0, z - 1) && findCasingControllerPort(x0, y0 + 1, z - 1) && findCasingControllerPort(x0 + 1, y0 + 1, z)) {
+					z1 = z;
+					f = true;
+					break;
+				}
+			}
+			if (!f) {
+				complete = 0; problem = StatCollector.translateToLocal("gui.casingIncomplete"); return false;
+			}
+			f = false;
+			for (int x = 0; x <= l; x++) {
+				if (!findCasingPort(x0 + x, y0 + 1, z0) && !findCasingPort(x0 + x - 1, y0, z0) && !findCasingPort(x0 + x, y0, z0 + 1) && findCasingControllerPort(x0 + x - 1, y0, z0 + 1) && findCasingControllerPort(x0 + x, y0 + 1, z0 + 1) && findCasingControllerPort(x0 + x - 1, y0 + 1, z0)) {
+					x1 = x0 + x;
+					f = true;
+					break;
+				}
+			}
+			if (!f) {
+				complete = 0; problem = StatCollector.translateToLocal("gui.casingIncomplete"); return false;
+			}
+			f = false;
+			for (int y = 0; y <= l; y++) {
+				if (!findCasingPort(x0, y0 + y - 1, z0) && !findCasingPort(x0 + 1, y0 + y, z0) && !findCasingPort(x0, y0 + y, z0 + 1) && findCasingControllerPort(x0 + 1, y0 + y, z0 + 1) && findCasingControllerPort(x0, y0 + y - 1, z0 + 1) && findCasingControllerPort(x0 + 1, y0 + y - 1, z0)) {
+					y1 = y0 + y;
+					f = true;
+					break;
+				}
+			}
+			if (!f) {
+				complete = 0; problem = StatCollector.translateToLocal("gui.casingIncomplete"); return false;
+			}
+			f = false;
+			if ((x0 > 0 || x1 < 0) || (y0 > 0 || y1 < 0) || (z0 > 0 || z1 < 0) || x1 - x0 < 1 || y1 - y0 < 1 || z1 - z0 < 1) {
+				problem = StatCollector.translateToLocal("gui.invalidStructure");
+				complete = 0;
 				return false;
-	    	}
-	    	for (int z = z0; z <= z1; z++) {
-	    		for (int x = x0; x <= x1; x++) {
-	    			for (int y = y0; y <= y1; y++) {
-	    				if(find(r, rr, rs, rrs, x, y, z)) {
-	    					if (x == 0 && y == 0 && z == 0) {} else {
-	    						problem = StatCollector.translateToLocal("gui.multipleControllers");
-	    						complete = 0;
-	    						return false;
-	    					}
-	    				}
-	    			}
-	    		}
-	    	}
-	    	for (int z = z0 + 1; z <= z1 - 1; z++) {
-	    		for (int x = x0 + 1; x <= x1 - 1; x++) {
-	    			if(!find(b, x, y0, z) && !(x == 0 && y0 == 0 && z == 0)) {
-	    				problem = StatCollector.translateToLocal("gui.casingIncomplete");
-	    				complete = 0;
-	    				return false;
-	    			}
-	    			if(!find(b, x, y1, z) && !(x == 0 && y1 == 0 && z == 0)) {
-	    				problem = StatCollector.translateToLocal("gui.casingIncomplete");
-	    				complete = 0;
-	    				return false;
-	    			}
-	    		}
-	    	}
-	    	for (int y = y0 + 1; y <= y1 - 1; y++) {
-	    		for (int x = x0 + 1; x <= x1 - 1; x++) {
-	    			if(!find(b, x, y, z0) && !(x == 0 && y == 0 && z0 == 0)) {
-	    				problem = StatCollector.translateToLocal("gui.casingIncomplete");
-	    				complete = 0;
-	    				return false;
-	    			}
-	    			if(!find(b, x, y, z1) && !(x == 0 && y == 0 && z1 == 0)) {
-	    				problem = StatCollector.translateToLocal("gui.casingIncomplete");
-	    				complete = 0;
-	    				return false;
-	    			}
-	    		}
-	    		for (int z = z0 + 1; z <= z1 - 1; z++) {
-	    			if(!find(b, x0, y, z) && !(x0 == 0 && y == 0 && z == 0)) {
-	    				problem = StatCollector.translateToLocal("gui.casingIncomplete");
-	    				complete = 0;
-	    				return false;
-	    			}
-	    			if(!find(b, x1, y, z) && !(x1 == 0 && y == 0 && z == 0)) {
-	    				problem = StatCollector.translateToLocal("gui.casingIncomplete");
-	    				complete = 0;
-	    				return false;
-	    			}
-	    		}
-	    	}
-	    	for (int z = z0 + 1; z <= z1 - 1; z++) {
-	    		for (int x = x0 + 1; x <= x1 - 1; x++) {
-	    			for (int y = y0 + 1; y <= y1 - 1; y++) {
-	    				if(find(b, r, rr, rs, rrs, x, y, z)) {
-	    					problem = StatCollector.translateToLocal("gui.casingInInterior");
-	    					complete = 0;
-	    					return false;
-	    				}
-	    			}
-	    		}
-	    	}
-	    	//problem = StatCollector.translateToLocal("gui.casingIncomplete");
-	    	complete = 1;
-	    	tickCount = 0;
-	    	this.x0 = x0;
-	    	this.y0 = y0;
-	    	this.z0 = z0;
-	    	this.x1 = x1;
-	    	this.y1 = y1;
-	    	this.z1 = z1;
-	    	lx = x1 + 1 - x0;
-	    	ly = y1 + 1 - y0;
-	    	lz = z1 + 1 - z0;
-	    	return true;
+			}
+			for (int z = z0; z <= z1; z++) {
+				for (int x = x0; x <= x1; x++) {
+					for (int y = y0; y <= y1; y++) {
+						if(findController(x, y, z)) {
+							if (x == 0 && y == 0 && z == 0) {} else {
+								problem = StatCollector.translateToLocal("gui.multipleControllers");
+								complete = 0;
+								return false;
+							}
+						}
+					}
+				}
+			}
+			for (int z = z0 + 1; z <= z1 - 1; z++) {
+				for (int x = x0 + 1; x <= x1 - 1; x++) {
+					if(!findCasingPort(x, y0, z) && !(x == 0 && y0 == 0 && z == 0)) {
+						problem = StatCollector.translateToLocal("gui.casingIncomplete");
+						complete = 0;
+						return false;
+					}
+					if(!findCasingPort(x, y1, z) && !(x == 0 && y1 == 0 && z == 0)) {
+						problem = StatCollector.translateToLocal("gui.casingIncomplete");
+						complete = 0;
+						return false;
+					}
+				}
+			}
+			for (int y = y0 + 1; y <= y1 - 1; y++) {
+				for (int x = x0 + 1; x <= x1 - 1; x++) {
+					if(!findCasingPort(x, y, z0) && !(x == 0 && y == 0 && z0 == 0)) {
+						problem = StatCollector.translateToLocal("gui.casingIncomplete");
+						complete = 0;
+						return false;
+					}
+					if(!findCasingPort(x, y, z1) && !(x == 0 && y == 0 && z1 == 0)) {
+						problem = StatCollector.translateToLocal("gui.casingIncomplete");
+						complete = 0;
+						return false;
+					}
+				}
+				for (int z = z0 + 1; z <= z1 - 1; z++) {
+					if(!findCasingPort(x0, y, z) && !(x0 == 0 && y == 0 && z == 0)) {
+						problem = StatCollector.translateToLocal("gui.casingIncomplete");
+						complete = 0;
+						return false;
+					}
+					if(!findCasingPort(x1, y, z) && !(x1 == 0 && y == 0 && z == 0)) {
+						problem = StatCollector.translateToLocal("gui.casingIncomplete");
+						complete = 0;
+						return false;
+					}
+				}
+			}
+			for (int z = z0 + 1; z <= z1 - 1; z++) {
+				for (int x = x0 + 1; x <= x1 - 1; x++) {
+					for (int y = y0 + 1; y <= y1 - 1; y++) {
+						if(findCasingControllerPort(x, y, z)) {
+							problem = StatCollector.translateToLocal("gui.casingInInterior");
+							complete = 0;
+							return false;
+						}
+					}
+				}
+			}
+			//problem = StatCollector.translateToLocal("gui.casingIncomplete");
+			complete = 1;
+			tickCount = 0;
+			this.x0 = x0;
+			this.y0 = y0;
+			this.z0 = z0;
+			this.x1 = x1;
+			this.y1 = y1;
+			this.z1 = z1;
+			lx = x1 + 1 - x0;
+			ly = y1 + 1 - y0;
+			lz = z1 + 1 - z0;
+			return true;
 		} else {
 			tickCount ++;
 			return complete == 1;
 		}
-    }
+	}
+
+    
 }

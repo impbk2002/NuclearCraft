@@ -11,6 +11,10 @@ import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
+@SideOnly(Side.CLIENT)
 public class GuiNuclearWorkspace extends GuiContainer {
 
 	public static final ResourceLocation texture = new ResourceLocation("nc:textures/gui/nuclearWorkspace.png");

@@ -52,10 +52,10 @@ public class BlockNuclearFurnace extends BlockContainer {
 	@Override
 	public void registerBlockIcons(IIconRegister iconRegister)
 	{
-	this.blockIcon = iconRegister.registerIcon("nc:machine/nuclearFurnace/" + "side");
-	this.iconFront = iconRegister.registerIcon("nc:machine/nuclearFurnace/" + "front" + (this.isActive ? "Active" : "Idle"));
-	this.iconTop = iconRegister.registerIcon("nc:machine/nuclearFurnace/" + "top");
-	this.iconBottom = iconRegister.registerIcon("nc:machine/nuclearFurnace/" + "bottom");
+		this.blockIcon = iconRegister.registerIcon("nc:machine/nuclearFurnace/" + "side");
+		this.iconFront = iconRegister.registerIcon("nc:machine/nuclearFurnace/" + "front" + (this.isActive ? "Active" : "Idle"));
+		this.iconTop = iconRegister.registerIcon("nc:machine/nuclearFurnace/" + "top");
+		this.iconBottom = iconRegister.registerIcon("nc:machine/nuclearFurnace/" + "bottom");
 	}
 
 	public Item getItemDropped(int par1, Random random, int par3)

@@ -166,4 +166,62 @@ public class ItemMaterial extends ItemMeta {
 		    default: return this.getUnlocalizedName();
 	    }
 	}
+
+	public static enum ITEMMaterial {
+		U238(24,25,55,56), U235(26,27,57,58), U233(28,29,59,60), PU238(30,31,61,62), PU239(32,33,63,64), PU242(34,35,65,66), PU241(36,37,67,68), TH232(38,39,82,83), TH230(40,41,84,85), NP236(86,87,104,105), NP237(88,89,106,107), AM241(90,91,108,109), AM242(92,93,110,111), AM243(94,95,112,113), CM243(96,97,114,115), CM245(98,99,116,117), CM246(100,101,118,119),CM247(102,103,120,121), CF250(122,123,124,125);
+		private int base,tiny,oxide,tinyoxide;
+		ITEMMaterial(int i, int j, int k, int l) {
+			base = i;
+			tiny = j;
+			oxide = k;
+			tinyoxide = l;
+		}
+		public static enum prefix{
+			TINY, OXIDE;
+			public String getName() {
+				if(this == prefix.OXIDE) {
+					return "Oxide";
+				} else {
+					return this.toString().toLowerCase();
+				}
+			}
+		}
+		public int getMeta(prefix... options) {
+			if(options.length < 1 || options == null) {
+				return this.base;
+			}
+			if(options.length > 1 && options != null) {
+				return this.tinyoxide;
+			}
+			return (options.length == 1 && options[0]==prefix.TINY) ? this.tiny : this.oxide;
+		}
+		public ItemStack getItem(prefix... options) {
+			int meta = this.base;
+			if(options != null) {
+				if (options.length > 1) {
+					meta = this.tinyoxide;
+				} else if (options.length == 1) {
+					meta = (options[0] == prefix.OXIDE) ? this.oxide : this.tiny;
+				}
+			}
+			return new ItemStack(NCItems.material, 1, meta);
+		}
+		public String getName(prefix... options) {
+			String matName = this.toString().toUpperCase().charAt(0)+this.toString().toLowerCase().substring(0);
+			if(options.length < 1 || options == null) {
+				return matName;
+			}
+			for(prefix option : options) {
+				if(option == prefix.TINY) {
+					matName = prefix.TINY.getName()+matName;
+				}
+				if(option == prefix.OXIDE) {
+					matName = matName+prefix.OXIDE.getName();
+				}
+			}
+			return matName;
+		}
+	}
+	
+
 }

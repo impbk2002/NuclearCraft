@@ -21,7 +21,7 @@ public class RenderFusionReactor extends TileEntitySpecialRenderer {
 	}
 	
 	public void renderTileEntityA(TileEntity tileentity, double x, double y, double z, float f) {
-		GL11.glPushMatrix();
+			GL11.glPushMatrix();
 			GL11.glTranslatef((float)x + 0.5F, (float)y + 1.5F, (float)z + 0.5F);
 			GL11.glRotatef(180, 0F, 0F, 1F);
 			
@@ -30,7 +30,7 @@ public class RenderFusionReactor extends TileEntitySpecialRenderer {
 			GL11.glPushMatrix();
 				this.model.renderModel(0.0625F);
 			GL11.glPopMatrix();
-		GL11.glPopMatrix();
+			GL11.glPopMatrix();
 	}
 	
 	public void renderTileEntityAt(TileEntity tileentity, double x, double y, double z, float f)
